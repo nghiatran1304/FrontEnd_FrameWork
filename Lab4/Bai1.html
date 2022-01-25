@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Bài 1</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="angularJS/angular.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+</head>
+
+<body ng-app="myapp">
+  <div class="container" ng-controller="myctrl">
+    <div class="container-fluid mt-2">
+      <div class="card w-50">
+        <div class="card-body text-center bg-info">
+          <img src="images/{{photo}}" alt="" class="img-fluid">
+        </div>
+        <div class="card-footer">
+          <ul class="list-unstyled pl-5 font-weight-bold">
+            <li>Họ tên : {{fullname}}</li>
+            <li>Ngày sinh : {{birthday}}</li>
+            <li>Giới tính : {{gender}}</li>
+            <li>Điểm trung bình : {{mark}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module("myapp", []);
+    app.controller("myctrl", function($scope){
+      $scope.fullname = "Trần Trung Nghĩa";
+      $scope.birthday = "13-04-1997";
+      $scope.gender = "Nam";
+      $scope.mark = 10;
+      $scope.photo = "meliodas.png";
+    })
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js/jquery-3.5.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

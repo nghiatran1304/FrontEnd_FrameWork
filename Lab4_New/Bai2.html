@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="angularJS/angular.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container" ng-app="myApp">
+        <div class="row container m-auto" ng-controller="bai2a">
+            <div class="card offset-1 mt-2">
+                <div class="card-header text-center font-weight-bold bg-warning text-light">BÀI 2A</div>
+                <div class="card-body row">
+                    <div class="col-8">
+                        <img src="image/ductinh.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-4 pl-5">
+                        <p class="pl-5 text-danger font-weight-bold" ng-repeat="t in lstNhanTu"> {{$index + 1}}. {{t}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" ng-controller="bai2b">
+            <label for="s" class="mr-3 font-weight-bold text-danger">Tìm kiếm</label>
+            <input type="text" class="form-control" id="s" ng-keyup="filter()" style="width: 300px;" ng-model="search"
+                placeholder="Search">
+            <table class="table table-hover table-bordered mt-2">
+                <thead class="text-center font-weight-bold text-light">
+                    <tr class="bg-primary">
+                        <th scope="col" colspan="7">BÀI 2B</th>
+                    </tr>
+                    <tr class="bg-info">
+                        <th scope="col" ng-click="showEvent()">
+                            Photo
+                        </th>          
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Tuition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in lstUsers">
+                        <th scope="row" class="text-center" >
+                            <img src="{{user.photo}}" class="img-fluid" ng-hide="showhide" style="height: 200px;">
+                        </th>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.fullname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.gender}}</td>
+                        <td>{{user.schoolfee}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("bai2a", function ($scope) {
+            $scope.lstNhanTu = [
+                "Nhường nhịn",
+                "Khiêm tốn",
+                "Trọng người",
+                "Thương vật",
+                "Kiên nhẫn"
+            ]
+        });
+
+
+        app.controller("bai2b", function ($scope) {
+
+        $scope.flag = true;
+        $scope.showEvent = function(){
+            if($scope.flag){
+                $scope.flag = false;
+				$scope.showhide = false;
+            }else{
+                $scope.flag = true;
+				$scope.showhide = true;
+            }
+		};
+            $scope.lstUsers = [{
+                    photo: "image/meliodas.png",
+                    username: "nghiatran",
+                    password: "nghianghia",
+                    fullname: "Trần Trung Nghĩa",
+                    email: "nghiattps14820@fpt.edu.vn",
+                    gender: "true",
+                    birthday: "13-04-1997",
+                    schoolfee: "10000000",
+                    marks: "0"
+                },
+                {
+                    photo: "image/kinh.png",
+                    username: "trangnhia",
+                    password: "123a",
+                    fullname: "Nghĩa Trần",
+                    email: "nghiat@fpt.edu.vn",
+                    gender: "true",
+                    birthday: "13-04-1997",
+                    schoolfee: "2500000",
+                    marks: "0"
+                },
+                {
+                    photo: "image/diane.png",
+                    username: "vy0123",
+                    password: "abc123",
+                    fullname: "PTMV",
+                    email: "vyptm@fpt.edu.vn",
+                    gender: "false",
+                    birthday: "02-10-1997",
+                    schoolfee: "2000000",
+                    marks: "0"
+                }
+            ];
+            $scope.search = "";
+            $scope.data = $scope.lstUsers;
+            $scope.filter = function () {
+                $scope.lstUsers = $scope.search ? $scope.data.filter(p => p.username.indexOf($scope
+                    .search) >= 0) : $scope.data;
+            }
+
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

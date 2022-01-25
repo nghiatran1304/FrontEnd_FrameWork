@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÀI 2</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-pro-5.13.0/css/all.min.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <i class="fas fa-edit"></i>
+                NHẬP LƯƠNG THÁNG 12
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="idNhanVien">Mã Nhân Viên</label>
+                        <input type="text" id="idNhanViên" class="form-control" placeholder="Mã Nhân Viên">
+                        <!-- <small class="form-text text-muted">Không được để trống mã nhân viên</small> -->
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="hoTen">Họ Tên</label>
+                        <input type="text" id="hoTen" class="form-control" placeholder="Nhập họ tên">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="clb">Câu Lạc Bộ</label>
+                        <select class="form-control" id="clb">
+                            <option>TP.HCM</option>
+                            <option>Đà Nẵng</option>
+                            <option>Hà Nội</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="luong">Lương</label>
+                        <input type="number" id="luong" class="form-control" placeholder="Nhập lương">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="thuong">Thưởng</label>
+                        <input type="number" id="thuong" class="form-control" placeholder="Nhập tiền thưởng">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="phuCap">Phụ Cấp</label>
+                        <input type="number" id="phuCap" class="form-control" placeholder="Nhập phụ cấp">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="ghiChu">Ghi Chú</label>
+                        <textarea name="ghiChu" id="ghiChu" cols="5" rows="3" class="form-control"
+                            style="resize: none;"></textarea>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <button class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                        <button class="btn btn-danger"><i class="fas fa-window-close"></i> Hủy</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Vui lòng nhập thông tin lương cầu thủ
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="angularJS/angular.min.js"></script>
+    <style>
+        .dn .card {
+            max-width: 400px;
+        }
+
+        .dn input {
+            max-width: 400px;
+        }
+
+        .dn img {
+            border-radius: 100%;
+            max-width: 100px;
+        }
+
+        .dn .userName {
+            min-height: 100px;
+        }
+
+        .dn .passWord {
+            min-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container text-center dn mt-5" ng-app="myApp" ng-controller="myCtrl">
+        <div class="card container-fluid p-0">
+            <div class="card-header bg-secondary">
+                <img src="image/avatar.png" alt="" class="img-fluid">
+            </div>
+            <div class="card-body">
+                <form name="frmLogin" id="frmLogin">
+                    <div class="form-group userName">
+                        <label for="username" class="float-left font-weight-bold">Tên đang nhập</label>
+                        <input type="text" class="form-control" ng-model="username" name="username" id="username"
+                            required maxlength="25">
+                        <small ng-show="frmLogin.username.$invalid" id="username"
+                            class="form-text text-danger float-left">Vui lòng
+                            nhập tài khoản</small>
+                    </div>
+                    <div class="form-group mt-3 passWord">
+                        <label for="password" class="float-left font-weight-bold">Mật khẩu</label>
+                        <input type="password" class="form-control" ng-model="password" name="password" id="password"
+                            required maxlength="25">
+                        <small ng-show="frmLogin.password.$invalid" id="password"
+                            class="form-text text-danger float-left">Vui lòng
+                            nhập mật khẩu</small>
+                    </div>
+                    <div class="form-group form-check text-left">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Ghi nhớ</label>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button ng-click='login()' class="btn alert-primary text-danger font-weight-bold">Đăng
+                            nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="lstSv.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.login = function(){
+                var username = $scope.username;
+                var password = $scope.password;
+                var flag = false;
+                var sinhVien;
+                for(var i = 0; i < listsv.length; i++){
+                    sinhVien = listsv[i];
+                    if(username == sinhVien.username && password == sinhVien.password){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag){
+                    sessionStorage.setItem("username", sinhVien.username);
+                    sessionStorage.setItem("hoTen", sinhVien.fullname);
+                    sessionStorage.setItem("email", sinhVien.email);
+                    sessionStorage.setItem("gender", sinhVien.gender);
+                    document.location = "indexBai4.html";
+                }
+            }
+        });
+
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+.lienhe {
+    background-color: rgb(225, 251, 252);
+    margin-top: 10px;
+    border-radius: 20px;
+    min-height: 600px;
+}
+
+.lienhe .col-12{
+    padding-top: 10px;
+}
+
+.lienhe .button-contactForm {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 195px;
+}
+
+.lienhe .offset-lg-1 {
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.contact-info__icon {
+    margin-top: -3px;
+}
+
+.lienhe .form-control {
+    border: 1px solid rgb(47, 233, 177);
+    border-radius: 10px;
+}
+
+.lienhe:hover {
+    background:linear-gradient(235deg, #e6ffea, #ebe5fd, #faf8dd);
+}
+
+.lienhe .form-contact {
+    margin-top: -40px;
+    margin-left: 40px;
+}
+
+.lienhe .offset-lg-1 {
+    padding-left: 100px;
+}
+
+.lienhe .media-body {
+    margin-left: 10px;
+}
+

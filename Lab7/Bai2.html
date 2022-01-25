@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body ng-app="myApp">
+
+    <div class="container" ng-controller="myCtrl">
+        <div class="card text-center">
+            <div class="card-header font-weight-bold bg-success text-light">
+                DANH SÁCH HÀNG HÓA
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>SẢN PHẨM</th>
+                            <th>ĐƠN GIÁ</th>
+                            <th>GIẢM GIÁ</th>
+                            <th>NGÀY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="sanPham in lstSanPham">
+                            <td scope="row" class="w-50">{{sanPham.name | uppercase}}</td>
+                            <td>{{sanPham.price | currency}}</td>
+                            <td>{{sanPham.discount | percentage : 2}}</td>
+                            <td>{{sanPham.date | date: "MMMM-dd, yyyy"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/Prods.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.lstSanPham = list;
+        });
+
+        app.filter("percentage", function($filter){
+            return function(input, decimals){
+                return $filter('number')(input * 100, decimals) + '%';
+            }
+        });
+    </script>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

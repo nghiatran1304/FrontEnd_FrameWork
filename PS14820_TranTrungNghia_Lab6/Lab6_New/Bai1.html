@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 1</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/all.min.css">
+    <script src="angularJS/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div class="container p-0" ng-controller="myCtrl">
+        <header class="row bg-dark p-2">
+            <h2 class="text-light">QUẢN TRỊ THỂ LOẠI</h2>
+        </header>
+        <div class="row">
+            <div class="p-0 col-8 h-100">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Thể loại</th>
+                            <th>Thứ tự</th>
+                            <th>Tên KD</th>
+                            <th>Số tin</th>
+                            <th>Phụ trách</th>
+                            <th>Ẩn hiện</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="tl in lstTheLoai">
+                            <td scope="row">{{tl.idTL}}</td>
+                            <td>{{tl.TenTL | uppercase}}</td>
+                            <td>{{tl.ThuTu}}</td>
+                            <td>{{tl.TenKD == "" ? "Chưa có" : tl.TenKD}}</td>
+                            <td>{{tl.SoTin}}</td>
+                            <td>{{tl.un == "" ? "Chưa có" : tl.un}}</td>
+                            <td>
+                                <span ng-if="tl.AnHien==0">Đang Ẩn</span>
+                                <span ng-if="tl.AnHien==1">Đang Hiện</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm font-weight-bold" ng-click="chonTL($index)"> >
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4 p-0 h-100">
+                <form name="frmThemTL">
+                    <div class="card">
+                        <div class="card-header bg-danger text-light">
+                            <h2 class="text-center">CHỈNH THỂ LOẠI</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="tenTheLoai">Tên thể loại</label>
+                                <input type="text" class="form-control" name="tentl" ng-model="tlHienTai.TenTL">
+                            </div>
+                            <div class="form-group">
+                                <label for="thuTu">Thứ tự</label>
+                                <input type="text" class="form-control" name="thuTu" ng-model="tlHienTai.ThuTu">
+                            </div>
+                            <div class="form-group">
+                                <label for="tenTheLoaiKhongDau">Tên thể loại không dấu</label>
+                                <input type="text" class="form-control" name="tentlKD" ng-model="tlHienTai.TenKD">
+                            </div>
+                            <div class="form-group">
+                                <label for="soTin">Số tin</label>
+                                <input type="text" class="form-control" name="soTin" ng-model="tlHienTai.SoTin">
+                            </div>
+                            <div class="form-group">
+                                <span class="mr-3">Ẩn hiện</span>
+                                <label class="radio-inline mr-3">
+                                    <input type="radio" name="anHien" ng-model="tlHienTai.AnHien" value="0">
+                                    Ẩn
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="anHien" ng-model="tlHienTai.AnHien" value="1">
+                                    Hiện
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="nguoiPhuTrach">Người phụ trách</label>
+                                <select name="username" class="form-control" ng-model="tlHienTai.un" id="nguoiPhuTrach">
+                                    <option value="{{u.un}}" ng-repeat="u in lstUsername">{{u.hoten}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-success font-weight-bold text-light"><i class="fas fa-save"></i> Lưu</button>
+                            <button class="btn btn-danger font-weight-bold text-light"><i class="fas fa-calendar-times"></i> Hủy</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theloai.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+
+            $scope.lstUsername = [{
+                    un: "dodatcao",
+                    hoten: "Đỗ đạt Cao"
+                },
+                {
+                    un: "Huahoai",
+                    hoten: "Hứa Hoài"
+                },
+                {
+                    un: "thihoai",
+                    hoten: "Thi Hoài"
+                },
+                {
+                    un: "phamkyluat",
+                    hoten: "Phạm Kỹ Luật"
+                }
+            ];
+
+            $scope.index = 0;
+            $scope.lstTheLoai = theloai;
+            $scope.chonTL = function (chiSo) {
+                $scope.index = chiSo;
+                $scope.tlHienTai = angular.copy($scope.lstTheLoai[chiSo]);
+                console.log($scope.tlHienTai);
+            }
+
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

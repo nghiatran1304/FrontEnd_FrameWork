@@ -1,0 +1,46 @@
+<style>
+    .imgMH {
+        height: 200px;
+    }
+</style>
+<article class="p-3">
+    <div class="row">
+        <aside class="col-3 p-0">
+            <div class="card">
+                <div class="card-header">
+                    <h4 style="color: rgb(51, 20, 224);">
+                        <i class="fab fa-asymmetrik"></i> Tất cả môn học
+                    </h4>
+                </div>
+                <div class="card-body p-0" style="font-size: 15px;">
+                    <div ng-include=" 'cacmonhoc.html' "></div>
+                </div>
+            </div>
+        </aside>
+        <section class="col-9 bg-light pt-0 pr-3 pr-0">
+            <div class="row">
+                <div class="card col-3 ml-5 mb-4" ng-repeat="mh in cacmonhoc | limitTo: pageSize:start">
+                    <a href="#!tracnghiem/{{mh.Id}}/{{mh.Name}}">
+                        <div class="card-body text-center">
+                            <img src="images/logos/{{mh.Logo}}" class="img-fluid imgMH" alt="">
+                            <h3 class="mt-3 text-danger">{{mh.Id}}</h3>
+                            <p class="text-primary font-weight-bold">{{mh.Name}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="card-footer text-center">
+                    <button type="button" class="btn btn-info mr-3" ng-click="first();"><i
+                            class="fas fa-angle-double-left"></i></button>
+                    <button type="button" class="btn btn-info mr-3" ng-click="prev();"><i
+                            class="fas fa-angle-left"></i></button>
+                    <button type="button" class="btn btn-info mr-3" ng-click="next();"><i
+                            class="fas fa-angle-right"></i></button>
+                    <button type="button" class="btn btn-info mr-3" ng-click="last();"><i
+                            class="fas fa-angle-double-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

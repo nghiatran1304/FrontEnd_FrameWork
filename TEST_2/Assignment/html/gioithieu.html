@@ -1,0 +1,25 @@
+
+<main>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3" ng-repeat="gt in listgt">
+					<div class="card profile-card-3">
+						<div class="background-block">
+							<img src="assets/img/gallery/univers.jpg"
+								alt="profile-sample1" class="background"/>
+						</div>
+						<div class="profile-thumb-block">
+							<img src="{{gt.Img}}" alt="profile-image" class="profile" />
+						</div>
+						<div class="card-content">
+							<h2>{{gt.Name}}</h2>
+							<p class="mt-3 w-100 float-left text-center"><strong>"{{gt.Quote}}"</strong></p>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+	</section>
+</main>

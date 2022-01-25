@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS14820 - Trần Trung Nghĩa</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <script src="../angular/angular.min.js"></script>
+    <script src="../angular/angular-route-1-8-2.js"></script>
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="../css/styleSideBar.css">
+    <link rel="stylesheet" href="../css/myStyle.css">
+
+</head>
+
+<body ng-app="myApp">
+    <div >
+        <main>
+            <div class="wrapper">
+                <!-- Sidebar  -->
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <!-- <h3 class="text-center">IMAGE</h3> -->
+                        <a href="#!/trang-chu"><img src="../images/slogan.png" alt="" class="container-fluid"></a>
+                    </div>
+
+                    <ul class="list-unstyled components" id="accordion">
+                        <h3 class="text-center font-weight-bold">MENU</h3>
+                        <!-- <li class="active"> -->
+                        <li>
+                            <a href="#!/tat-Ca-Mon-Hoc"><i class="fab fa-asymmetrik"></i> Tất cả môn học</a>
+                        </li>
+                        <li class="mt-2">
+                            <a href="#lapTrinh" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                                aria-controls="lapTrinh"><i class="fas fa-project-diagram"></i> Lập
+                                trình</a>
+                            <ul class="collapse list-unstyled" data-parent="#accordion" id="lapTrinh">
+                                <li>
+                                    <a href="#">Android Cơ Bản</a>
+                                </li>
+                                <li>
+                                    <a href="#">Android Nâng Cao</a>
+                                </li>
+                                <li>
+                                    <a href="#">ASB.Net</a>
+                                </li>
+                                <li>
+                                    <a href="#">Game 2D</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML5 / CSS</a>
+                                </li>
+                                <li>
+                                    <a href="#">JavaScript</a>
+                                </li>
+                                <li>
+                                    <a href="#">PHP</a>
+                                </li>
+                                <li>
+                                    <a href="#">JAVA OOP</a>
+                                </li>
+                                <li>
+                                    <a href="#">JAVA Nâng cao</a>
+                                </li>
+                                <li>
+                                    <a href="#">VB.NET</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="mt-2">
+                            <a href="#thietKe" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                                aria-controls="thietKe"><i class="fas fa-layer-group"></i> Thiết kế UI</a>
+                            <ul class="collapse list-unstyled" id="thietKe" data-parent="#accordion">
+                                <li>
+                                    <a href="#">Giao Diện Android</a>
+                                </li>
+                                <li>
+                                    <a href="#">Thiết Kế Layout</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xây Dựng Trang Web</a>
+                                </li>
+                                <li>
+                                    <a href="#">Web Cho Điện Thoại</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mt-2">
+                            <a href="#database" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                                aria-controls="database"><i class="fas fa-database"></i> Database</a>
+                            <ul class="collapse list-unstyled" id="database" data-parent="#accordion">
+                                <li>
+                                    <a href="#">Cơ Sở Dữ Liệu</a>
+                                </li>
+                                <li>
+                                    <a href="#">SQL Server</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mt-2">
+                            <a href="#khac" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                                aria-controls="khac"><i class="fas fa-box-open"></i> Khác</a>
+                            <ul class="collapse list-unstyled" id="khac" data-parent="#accordion">
+                                <li>
+                                    <a href="#">Kiểm Thử và Triển Khai Ứng Dụng Adroid</a>
+                                </li>
+                                <li>
+                                    <a href="#">Điện Toán Đám Mây</a>
+                                </li>
+                                <li>
+                                    <a href="#">Internet Marketingy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Quản Lý Dự Án Với Agile</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Page Content  -->
+                <div id="content">
+                    <!-- MENU -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light col" >
+                        <a class="navbar-brand" id="fpt" href="#!/trang-chu">FPT Polytechnic</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse pr-5 bg-light font-weight-bold col" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item mr-2">
+                                    <a class="nav-link" href="#!/gioi-thieu">Giới thiệu <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item mr-2">
+                                    <a class="nav-link" href="#!/lien-he">Liên hệ</a>
+                                </li>
+                                <li class="nav-item mr-2">
+                                    <!-- <a class="nav-link" href="#!/gop-y">Góp ý</a> -->
+                                    <a class="nav-link" href="./layout/gopY.html">Góp ý</a>
+                                </li>
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link" href="#!/hoi-dap">Hỏi đáp</a>
+                                </li>
+
+                            </ul>
+                            <div class="mr-3 my-2 my-lg-0">
+                                <div class="dropdown">
+                                    <div class="btn p-0 text-danger font-weight-bold" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-user text-danger"></i> Tài Khoản <i
+                                            class="fas fa-angle-down text-danger"></i>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-md-left dropdown-menu-lg-right "
+                                        aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Đăng ký</a>
+                                        <a class="dropdown-item" href="#!/dang-nhap">Đăng nhập</a>
+                                        <a class="dropdown-item" href="#">Quên mật khẩu</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                                        <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                                        <a class="dropdown-item" href="#">Cập nhật tài khoản</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!--  -->
+                    <button type="button" id="sidebarCollapse" class="btn btn-danger">
+                        <i class="fas fa-list"></i>
+                    </button>
+
+                    <!-- MAIN CONTENT -->
+                    <article class="pl-5 pr-5 mt-3">
+                            <div class="p-5 ngViewClass" ng-view>
+                                <!-- <div class="p-2" ng-view> -->
+                            </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="../js/module.js"></script>
+
+    <script src="../js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

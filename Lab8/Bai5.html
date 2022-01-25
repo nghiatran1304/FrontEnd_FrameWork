@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 5</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route-1-8-2.js"></script>
+    <link rel="stylesheet" href="css/poly.css" />
+    <link rel="stylesheet" href="fontawesome-pro-5.13.0/all.min.css" />
+    <style>
+        .carousel-inner img {
+            margin: 0 auto;
+            min-height: 300px;
+            max-width: 95%;
+        }
+
+        .img-thumbnail {
+            max-height: 50px;
+            max-width: 95%;
+        }
+
+        .ul-li-ThongTin {
+            font-size: 20px;
+        }
+
+        .thumbnail img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <header class="row container-fluid">
+            <div class="shopping-mall">
+                <h1>ONLINE SHOPPING MALL</h1>
+                <h5>THE CENTER POINT OF THE PROFESSIONAL PROGRAMMING</h5>
+            </div>
+            <img src="image/header-object.png" alt="" class="float-right ml-auto img-fluid" />
+        </header>
+
+        <!-- menu -->
+        <nav>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark col">
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="fas fa-home"></i> Trang chủ
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-list"></i> Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-phone"></i> Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Góp ý</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-question-circle"></i> Hỏi đáp</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Tài khoản</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="#">Đăng nhập</a>
+                                <a class="dropdown-item" href="#">Quên mật khẩu</a>
+                                <a class="dropdown-item" href="#">Đăng kí thành viên</a>
+                                <hr class="dropdown-deliver" />
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                                <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                                <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
+                                <hr class="dropdown-deliver" />
+                                <a class="dropdown-item" href="#">Đơn hàng</a>
+                                <a class="dropdown-item" href="#">Hàng đã mua</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">English</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Tiếng Việt</a>
+                    </li>
+                </ul>
+            </nav>
+        </nav>
+
+        <!-- main -->
+        <article class="row mt-3">
+            <!-- noi dung chinh -->
+            <section class="col-9">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="#" class="thumbnail">
+                                <img src="image/products/asus.png" alt="">
+                            </a>
+                            <div class="caption text-justify">
+                                <span>
+                                    Yêu cầu khách hàng cung cấp giấy chứng nhận tiêu chuẩn chất lượng và giấy xác nhận
+                                    nội dung quảng
+                                    cáo của sản phẩm đối với các khách hàng kinh doanh thực phẩm chức năng/Thực phẩm
+                                    Duọc phẩm/Thuốc
+                                </span>
+                                <a href="#" class="btn btn-sm btn-info">Chi tiết....</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#" class="thumbnail">
+                                <img src="image/products/asus.png" alt="">
+                            </a>
+                            <div class="caption text-justify">
+                                <span>
+                                    Yêu cầu khách hàng cung cấp giấy chứng nhận tiêu chuẩn chất lượng và giấy xác nhận
+                                    nội dung quảng
+                                    cáo của sản phẩm đối với các khách hàng kinh doanh thực phẩm chức năng/Thực phẩm
+                                    Duọc phẩm/Thuốc
+                                </span>
+                                <a href="#" class="btn btn-sm btn-info">Chi tiết....</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#" class="thumbnail">
+                                <img src="image/products/asus.png" alt="">
+                            </a>
+                            <div class="caption text-justify">
+                                <span>
+                                    Yêu cầu khách hàng cung cấp giấy chứng nhận tiêu chuẩn chất lượng và giấy xác nhận
+                                    nội dung quảng
+                                    cáo của sản phẩm đối với các khách hàng kinh doanh thực phẩm chức năng/Thực phẩm
+                                    Duọc phẩm/Thuốc
+                                </span>
+                                <a href="#" class="btn btn-sm btn-info">Chi tiết....</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4 text-center justify-content-center">
+                    <li class="btn btn-outline-primary mr-2 thumbnail"><a href="#"><span class="far fa-hand-point-up"></span></a></li>
+                    <li class="btn btn-outline-primary mr-2 thumbnail"><a href="#"><span class="far fa-hand-point-left"></span></a></li>
+                    <li class="btn btn-outline-primary mr-2 thumbnail"><a href="#"><span class="far fa-hand-point-right"></span></a></li>
+                    <li class="btn btn-outline-primary mr-2 thumbnail"><a href="#"><span class="far fa-hand-point-down"></span></a></li>
+                </div>
+
+            </section>
+
+            <!-- sidebar -->
+            <aside class="col-3">
+                <div class="card-poly">
+                    <div class="card">
+                        <div class="card-body row">
+                            <div class="col-5">
+                                <img src="image/shoppingcart.gif" alt="" class="img-fluid" />
+                            </div>
+                            <ul class="col-7" style="list-style-type: none">
+                                <li>100 ITEMS</li>
+                                <li>1000$</li>
+                                <li><a href="#">View Cart</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form action="">
+                            <input type="text" placeholder="Tìm kiếm" class="form-control" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header p-0" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-primary container-fluid text-left" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="fas fa-list"></i>
+                                        Chủng Loại
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <ul class="list-group" style="list-style-type: none">
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Điện thoại di động </a>
+                                            <span class="badge badge-dark badge-pill float-right">20</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Máy tính xách tay</a>
+                                            <span class="badge badge-dark badge-pill float-right">3</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Máy tính để bàn</a>
+                                            <span class="badge badge-dark badge-pill float-right">7</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Quạt máy</a>
+                                            <span class="badge badge-dark badge-pill float-right">9</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Tivi</a>
+                                            <span class="badge badge-dark badge-pill float-right">11</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Tủ lạnh</a>
+                                            <span class="badge badge-dark badge-pill float-right">15</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-0" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-info collapsed container-fluid text-left"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        Nhà Cung Cấp
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <ul class="list-group" style="list-style-type: none">
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Apple</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Samsung</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Nokia</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">LG</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Sony Ericson</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Dell</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Acer</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">HP</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Toshiba</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-0" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-danger collapsed container-fluid text-left"
+                                        data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        <i class="far fa-star"></i>
+                                        Hàng đặt biệt
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <ul class="list-group" style="list-style-type: none">
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Hàng bán chạy</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Hàng mới</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Hàng giảm giá</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Hàng đặc biệt</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="text-dark">Hàng xem nhiều</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </article>
+
+        <!-- footer -->
+        <footer class="row mt-5 container-fluid">
+            <div class="card col p-0">
+                <div class="card-footer text-center">
+                    <h5>FPT Polytechnic &copy; 2021. All rights reserved</h5>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

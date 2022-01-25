@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="38103395762-a03gvbvshdtca3gkcu93hro5gajsr94e.apps.googleusercontent.com">
+        //SỬa dòng trên
+    <title>Title</title>
+</head>
+
+<body ng-app="myapp">
+    <div class="container" ng-controller="myctrl">
+        <div id="logreg-forms">
+            <div class="form">
+                
+                <p style="text-align:center; font-size: 36px; color: blue;font-weight: 600;"> Log In </p>
+                <input type="text" id="inputEmail" name="email" class="form-control" ng-model="email"
+                    placeholder="Email" required autofocus="">
+                <input type="password" id="inputPassword" name="password" class="form-control" ng-model="password"
+                    placeholder="Password" required>
+
+                <button style="margin-top: 20px; padding-bottom: 10px;" class="btn btn-success btn-block"
+                    ng-click="login()"><i class="fas fa-sign-in-alt"></i> Sign
+                    In</button>
+                <button style="margin-top: 20px; padding-bottom: 10px; margin-bottom: 20px;"
+                    class="btn btn-info btn-add btn-block" data-toggle="modal" data-target="#exampleModal"><i
+                        class="fas fa-sign-in-alt"></i> Sign
+                    Up</button>
+
+                    <div class="social-login">
+                        <div class="g-signin2" data-onsuccess="onSignIn" style="width: 390px;">Sign
+                            in with Google+</div>
+                    </div>
+
+            </div>
+            <div class="modal fade modal-wrapper" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đăng Ký Tài Khoản</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" autocomplete="off">
+                                <input type="text" name="fullname" placeholder="Fullname">
+                                <input type="password" name="password" placeholder="Password">
+                                <input type="password" name="conFirmpassword" placeholder="Confirm Password">
+                                <input type="email" name="email" placeholder="Email">
+                                <button class="btn btn-primary btn-modal">Submit</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    // Sửa nguyên cái script này
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD_URRYkljwhfUv2UXSpw2dOnAzUr2tLnc",
+            authDomain: "ps14692assignment.firebaseapp.com",
+            databaseURL: "https://ps14692assignment-default-rtdb.firebaseio.com",
+            projectId: "ps14692assignment",
+            storageBucket: "ps14692assignment.appspot.com",
+            messagingSenderId: "38103395762",
+            appId: "1:38103395762:web:70dfac8ea103f84dadc8ab"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <script>
+        const btnLogin = document.querySelector('.btn-success');
+        const modalWrapper = document.querySelector('.modal-wrapper');
+        const addModal = document.querySelector('.modal');
+        const addModalForm = document.querySelector('.modal .form');
+
+        const btnAdd = document.querySelector('.btn-add');
+
+        // User click anyware outside the modal
+        // window.addEventListener('click', e => {
+        //     if (e.target === addModal) {
+        //         addModal.classList.remove('modal-show');
+        //     }
+
+        // });
+
+
+
+        // Get all courses
+        var emailinput;
+        var passwordinput;
+
+        btnLogin.addEventListener('click', () => {
+            // const account = [];
+            emailinput = document.querySelector('#inputEmail').value;
+            passwordinput = document.querySelector('#inputPassword').value;
+            if (emailinput === "" || passwordinput === "") {
+                alert("Vui lòng nhập tên đăng nhập và mật khẩu");
+                return;
+            } else {
+                console.log(emailinput);
+                console.log(passwordinput);
+            }
+
+            const account = [];
+
+            db.collection('users').where("email", "==", emailinput).get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    account.push(doc.data());
+                    // console.log(doc.data().username);
+                    // console.log(doc.data().password);
+                    // console.log(usernameinput);
+                    console.log(account);
+                    var i;
+                    if (emailinput === doc.data().email) {
+                        if (passwordinput === doc.data().password) {
+                            alert("Đăng nhập thành công");
+                            localStorage.setItem('name', doc.data().email);
+                            window.location.href = 'index.html';
+                        } else {
+                            alert("Sai mật khẩu!");
+                        }
+                    } else {
+                        alert("Email không chính xác!");
+                    }
+                })
+            });
+        });
+
+        var checked = true;
+
+        addModalForm.addEventListener('submit', e => {
+            var fullnamerg = addModalForm.fullname.value;
+            var passwordrg = addModalForm.password.value;
+            var emailrg = addModalForm.email.value;
+
+            e.preventDefault();
+            if (fullnamerg === "" || passwordrg === "" || emailrg === "") {
+                alert("Vui lòng nhập thông tin không bỏ trống!!!");
+                return;
+            }
+            var accounts = [];
+            db.collection('users').where("email", "==", emailrg).get().then((snapshot) => {
+                console.log(snapshot.docs.length);
+                if (snapshot.docs.length > 0) {
+                    alert("Email đã tồn tại!!");
+                    return;
+                } else {
+                    alert("Đăng ký thành công!");
+                    db.collection('users').add({
+                        fullname: fullnamerg,
+                        password: passwordrg,
+                        email: emailrg,
+                    });
+                }
+            });
+        });
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            var accounts = [];
+            localStorage.setItem('name', profile.getEmail());
+            db.collection('users').where("email", "==", profile.getEmail()).get().then((snapshot) => {
+                console.log(snapshot.docs.length);
+                if (snapshot.docs.length != 0) {
+                    window.location.href = 'index.html';
+                } else {
+                    db.collection('users').add({
+                        fullname: profile.getName(),
+                        password: "Passwordwashexed",
+                        email: profile.getEmail(),
+                    }).then(function() {
+                        window.location.href = 'index.html';
+                    });
+                }
+            });
+        }
+    </script>
+    
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

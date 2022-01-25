@@ -1,0 +1,53 @@
+<style></style>
+<article class="p-3">
+  <div class="row">
+    <!-- <aside class="col-3 p-0">
+      <div class="card">
+        <div class="card-header">
+          <h4 style="color: rgb(51, 20, 224)"><i class="fab fa-asymmetrik"></i> Tất cả môn học</h4>
+        </div>
+        <div class="card-body p-0" style="font-size: 15px">
+          <div ng-include=" 'cacmonhoc.html' "></div>
+        </div>
+      </div>
+    </aside> -->
+    <section class="col-9 bg-light pt-0 pr-3 pr-0">
+      <div class="card mb-5" style="height: 400px" ng-repeat="ch in random10CauHoi | limitTo: pageSize:start">
+        <div class="card-header bg-info text-light font-weight-bold">{{ch.Text}}</div>
+        <div class="card-footer text-muted">Điểm cho câu hỏi : {{ch.Marks}}</div>
+        <div class="card-body pl-5">
+          <p class="card-text" ng-repeat="pa in ch.Answers">
+            <!-- ng-checked=" ans(pa.Id) == {{userChoose}} " -->
+            <input type="radio" class="form-check-input" ng-click="ans(pa.Id, ch.Id)" id="{{pa.Id}}" ng-value="{{pa.Id}}" name="pa" value="{{pa.Id}}" />
+            <label class="form-check-label">{{pa.Text}}</label>
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-footer text-center">
+          <!-- <button type="button" class="btn btn-info mr-3" ng-click="first();"><i
+                        class="fas fa-angle-double-left"></i></button> -->
+          <button type="button" class="btn btn-info mr-3" ng-click="prev();"><i class="fas fa-angle-left"></i></button>
+          <button type="button" class="btn btn-info mr-3" ng-click="next();"><i class="fas fa-angle-right"></i></button>
+          <!-- <button type="button" class="btn btn-info mr-3" ng-click="last();"><i
+                        class="fas fa-angle-double-right"></i></button> -->
+          <button type="button" class="btn btn-success float-right" ng-click="ketThucKiemTra()">Kết Thúc</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="col-3 p-0">
+      <div class="card font-weight-bold">
+        <div class="card-header text-center">
+          <h4>
+            THỜI GIAN CÒN LẠI
+          </h4>
+        </div>
+        <div class="card-body text-center">
+          <h3 id="countdown" class="timer text-primary"></h3>
+        </div>
+      </div>
+        <img src="image/coLen.gif" alt="">
+    </aside>
+  </div>
+</article>

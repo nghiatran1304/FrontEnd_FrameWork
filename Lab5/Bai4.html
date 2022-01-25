@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 4</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="angularJS/angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <form>
+            <div class="card">
+                <div class="card-header bg-info text-center">
+                    <h3 class="font-weight-bold text-light">EDIT PROFILE</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="fullname">Họ và tên</label>
+                        <input type="text" id="fullname" class="form-control" ng-model="student.fullname">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Ngày sinh</label>
+                        <input type="text" id="birthday" class="form-control" ng-model="student.birthday">
+                    </div>
+                    <div class="form-group">
+                        <label for="mark">Điểm</label>
+                        <input type="text" class="form-control" ng-model="student.mark">
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-success mr-3" ng-click="them()">Thêm</button>
+                    <button class="btn btn-warning mr-3" ng-click="sua()" ng-hide="index == -1">Sửa</button>
+                    <button class="btn btn-danger mr-3" ng-click="xoa()" ng-disabled="index == -1">Xóa</button>
+                    <button class="btn btn-secondary mr-3" ng-click="huy()">Hủy</button>
+                    <button class="btn btn-primary mr-3" ng-click="moi()">Mới</button>
+                </div>
+            </div>
+        </form>
+        <div class=" mt-3">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="text-center bg-info text-light font-weight-bold">
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Điểm</th>
+                        <th scope="col">Xếp hạng</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="st in lstStudents">
+                        <th scope="row">{{st.fullname}}</th>
+                        <td>{{st.birthday}}</td>
+                        <td>{{st.mark}}</td>
+                        <td>
+                            <span ng-if="st.mark < 5">Yếu/Kém</span>
+                            <span ng-if="st.mark >= 5 && st.mark <= 8">Trung bình/Khá</span>
+                            <span ng-if="st.mark > 8">Giỏi/Xuất Sắc</span>
+                        </td>
+                        <td>
+                            <a href="#" ng-click="edit($index)">Sửa</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.student = {};
+            $scope.lstStudents = [
+                {
+                    fullname: "Trần Trung Nghĩa",
+                    birthday: "13-04-1997",
+                    mark: 9
+                },
+                {
+                    fullname: "Nghĩa Trần",
+                    birthday: "02-10-1997",
+                    mark: 10
+                }
+            ];
+
+            $scope.index = -1;
+
+            $scope.edit = function (index) {
+                $scope.index = index;
+                $scope.student = $scope.lstStudents[$scope.index];
+            }
+
+            $scope.moi = function () {
+                $scope.student = {};
+                $scope.index = -1;
+            }
+
+            $scope.them = function () {
+                $scope.lstStudents.push(angular.copy($scope.student));
+                $scope.moi();
+            }
+
+            $scope.sua = function () {
+                if ($scope.index != -1) {
+                    $scope.lstStudents[$scope.index] = angular.copy($scope.student);
+                    $scope.moi();
+                }
+            }
+
+            $scope.xoa = function () {
+                if ($scope.index != -1) {
+                    $scope.lstStudents.splice($scope.index, 1);
+                    $scope.moi();
+                }
+            }
+
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

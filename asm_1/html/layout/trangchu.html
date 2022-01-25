@@ -1,0 +1,58 @@
+<style>
+    body {
+        background-image: url(../images/examBook.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+<div class="mt-5">
+    <!-- CAROUSEL -->
+    <div id="carouselId" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselId" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox" style="background-color: #cccccc">
+            <div class="carousel-item active text-center">
+                <img src="../images/slide2.jpg" class="img-fluid" alt="img" style="width: 1800px; height: 400px;" />
+            </div>
+            <div class="carousel-item text-center">
+                <img src="../images/slide1.jpg" class="img-fluid" alt="img" style="width: 1800px; height: 400px;" />
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- JUMBOTRON -->
+    <div class="jumbotron p-3">
+        <fieldset>
+            <legend class="display-5 text-danger">Chương Trình Thi Online</legend>
+            <ul class="list-unstyled">
+                <li>Trang web thi trắc nghiệm trực tuyến</li>
+                <li>Các môn CNTT thi trắc nghiệm trực tuyến. Để bắt đầu bài thi vui lòng đăng nhập hoặc đăng kí...</li>
+                <li class="mt-1"> <button class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target="#xemthem" aria-expanded="false" aria-controls="xemthem">
+                        Xem thêm
+                    </button></li>
+                <div class="collapse mt-2" id="xemthem">
+                    <div class="card card-body">
+                        Trang web được phát triển nhầm hỗ trợ sinh viên CNTT có thể thi trực tuyến. <br>
+                        Để bắt đầu phần thi hãy đăng nhập tài khoản (nếu có trước) hoặc tạo tài khoản rồi đăng nhập <br>
+                        Chọn danh mục môn thi sau đó bắt đầu phần thi của mình <br>
+                        <strong>Chúc các bạn đạt điểm cao trong phần thi của mình !</strong>
+                    </div>
+                </div>
+            </ul>
+        </fieldset>
+    </div>
+
+</div>

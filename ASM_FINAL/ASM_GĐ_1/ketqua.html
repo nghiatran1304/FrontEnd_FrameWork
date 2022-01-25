@@ -1,0 +1,43 @@
+<style>
+    body {
+    background-image: url("image/backgroundKetQua.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+</style>
+<div class="row">
+  <div class="col-3">
+    <img src="image/meoTrai2.gif" alt="" style="height: 450px;">
+  </div>
+  <div class="card col-6">
+    <div class="card-header text-center font-weight-bold">
+      <h3 class="text-danger">Tài khoản : {{student.username}}</h3>
+      <h3 class="text-info">DANH SÁCH CÁC MÔN ĐÃ THI</h3>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-info text-light font-weight-bold">
+          <tr class="text-center">
+            <th>Tên môn học</th>
+            <th>Điểm</th>
+            <th>Xem kết quả</th>
+          </tr>
+        </thead>
+        <tbody class="text-center font-weight-bold">
+          <tr ng-repeat="rs in lstKetQua">
+            <td scope="row" class="text-primary">{{rs.tenMonHoc}}</td>
+            <td class="text-danger">{{rs.diem}}</td>
+            <td>
+              <a href="#!chiTiet/{{rs.chiTiet}}/{{rs.tenMonHoc}}">Chi Tiết</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-3">
+    <img src="image/peachcat-ramen.gif" alt="" style="height: 450px; width: 450px;">
+  </div>
+</div>

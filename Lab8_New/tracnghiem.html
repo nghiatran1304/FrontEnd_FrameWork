@@ -1,0 +1,26 @@
+<div class="card mb-5 ftco-animate" ng-repeat="ch in caccauhoi | limitTo: pageSize:start">
+    <div class="card-header bg-info text-light font-weight-bold">
+        {{ch.Text}}
+    </div>
+    <div class="card-body pl-5">
+        <p class="card-text" ng-repeat="pa in ch.Answers">
+            <input type="radio" class="form-check-input"  name="pa" value="{{pa.Id}}"> 
+            <label class="form-check-label">{{pa.Text}}</label>
+        </p>
+    </div>
+    <div class="card-footer text-muted">
+        Điểm {{ch.Marks}}
+    </div>
+</div>
+<div class="card-footer">
+    <div class="card-footer text-center">
+        <button type="button" class="btn btn-info mr-3" ng-click="first();"><i
+                class="fas fa-angle-double-left"></i></button>
+        <button type="button" class="btn btn-info mr-3" ng-click="prev();"><i
+                class="fas fa-angle-left"></i></button>
+        <button type="button" class="btn btn-info mr-3" ng-click="next();"><i
+                class="fas fa-angle-right"></i></button>
+        <button type="button" class="btn btn-info mr-3" ng-click="last();"><i
+                class="fas fa-angle-double-right"></i></button>
+    </div>
+</div>

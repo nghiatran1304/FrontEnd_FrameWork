@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 4</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-route-1-8-2.js"></script>
+    <link rel="stylesheet" href="../css/poly.css" />
+    <link rel="stylesheet" href="../fontawesome-pro-5.13.0/all.min.css" />
+    <style>
+        .carousel-inner img {
+            margin: 0 auto;
+            min-height: 300px;
+            max-width: 95%;
+        }
+
+        .img-thumbnail {
+            max-height: 50px;
+            max-width: 95%;
+        }
+
+        .ul-li-ThongTin {
+            font-size: 20px;
+        }
+
+        .thumbnail img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+    <div class="container">
+        <!-- header -->
+        <header class="row container-fluid">
+            <div class="shopping-mall">
+                <h1>ONLINE SHOPPING MALL</h1>
+                <h5>THE CENTER POINT OF THE PROFESSIONAL PROGRAMMING</h5>
+            </div>
+            <img src="../image/header-object.png" alt="" class="float-right ml-auto img-fluid" />
+        </header>
+
+        <!-- menu -->
+        <nav ng-include="'menu.html'">
+         
+        </nav>
+
+        <!-- main -->
+        <article class="row mt-3">
+            <!-- noi dung chinh -->
+            <section class="col-9">
+                <div ng-show="loading" class="float-right label label-info">Loading...</div>
+                <div ng-view></div>
+            </section>
+
+            <!-- sidebar -->
+            <aside class="col-3">
+               <div ng-include="'card.html'"></div>
+                <div ng-include="'search.html'"></div>
+
+                <div class="card mt-3">
+                    <div id="accordion">
+                        <div ng-include="'category.html'"></div>
+                        <div ng-include="'supplier.html'"></div>
+                        <div ng-include="'special.html'"></div>
+                    </div>
+                </div>
+            </aside>
+        </article>
+
+        <!-- footer -->
+        <footer class="row mt-5 container-fluid">
+            <div class="card col p-0">
+                <div class="card-footer text-center">
+                    <h5>FPT Polytechnic &copy; 2021. All rights reserved</h5>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="layout.js"></script>
+    <script src="category-ctrl.js"></script>
+    <script src="supplier-ctrl.js"></script>
+    <script src="special-ctrl.js"></script>
+    <script src="../js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>

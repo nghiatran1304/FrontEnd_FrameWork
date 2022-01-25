@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BÀI 3</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="fontawesome-pro-5.13.0/css/all.min.css">
+  <style>
+    thead th {
+      text-align: center !important;
+      vertical-align: middle !important;
+      background-color: lightgoldenrodyellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true"><i class="fas fa-edit"></i> CẬP NHẬT </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false"><i class="fas fa-list"></i> DANH SÁCH</a>
+      </li>
+    </ul>
+    <!-- FORM CẬP NHẬT -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-edit"></i>
+            NHẬP LƯƠNG THÁNG 12
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="idNhanVien">Mã Nhân Viên</label>
+                <input type="text" id="idNhanViên" class="form-control" placeholder="Mã Nhân Viên">
+                <!-- <small class="form-text text-muted">Không được để trống mã nhân viên</small> -->
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="hoTen">Họ Tên</label>
+                <input type="text" id="hoTen" class="form-control" placeholder="Nhập họ tên">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="clb">Câu Lạc Bộ</label>
+                <select class="form-control" id="clb">
+                  <option>TP.HCM</option>
+                  <option>Đà Nẵng</option>
+                  <option>Hà Nội</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="luong">Lương</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="text" id="luong" class="form-control" placeholder="Nhập lương">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="thuong">Thưởng</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="text" id="thuong" class="form-control" placeholder="Nhập tiền thưởng">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="phuCap">Phụ Cấp</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="text" id="phuCap" class="form-control" placeholder="Nhập phụ cấp">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label for="ghiChu">Ghi Chú</label>
+                <textarea name="ghiChu" id="ghiChu" cols="5" rows="3" class="form-control"
+                  style="resize: none;"></textarea>
+              </div>
+              <div class="form-group col-sm-12">
+                <button class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                <button class="btn btn-danger"><i class="fas fa-window-close"></i> Hủy</button>
+              </div>
+            </div>
+            <div class="card-footer">
+              Vui lòng nhập thông tin lương cầu thủ
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TABLE DANH SÁCH -->
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-list"></i>
+            BẢNG LƯƠNG THÁNG 12
+          </div>
+          <table class="table table-hover table-bordered mb-0">
+            <thead>
+              <tr>
+                <th rowspan="2">MÃ NV</th>
+                <th rowspan="2">HỌ VÀ TÊN</th>
+                <th colspan="3">THU NHẬP</th>
+              </tr>
+              <tr>
+                <th>LƯƠNG</th>
+                <th>THƯỞNG</th>
+                <th>PHỤ CẤP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>NV100</td>
+                <td>Nguyễn Công Phượng</td>
+                <td>5000000</td>
+                <td>5000000</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>NV102</td>
+                <td>Phan Văn Tài Em</td>
+                <td>9000000</td>
+                <td>6000000</td>
+                <td>100000</td>
+              </tr>
+              <tr>
+                <td>NV103</td>
+                <td>Lê Huỳnh Đức</td>
+                <td>7000000</td>
+                <td>3000000</td>
+                <td>200000</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card-footer">
+            Lương của cầu thủ và huấn luyện viên chuyên nghiệp
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="js/jquery-3.5.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

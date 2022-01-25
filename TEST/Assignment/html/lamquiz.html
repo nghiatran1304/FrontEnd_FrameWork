@@ -1,0 +1,123 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    #number {
+        color: red;
+        position: absolute;
+        font-size: 20px;
+        font-weight: 600;
+        left: 500px;
+        top: 140px;
+        z-index: 9999;
+    }
+    #number1 {
+        color: red;
+        position: absolute;
+        font-size: 20px;
+        font-weight: 600;
+        left: 520px;
+        top: 170px;
+        z-index: 9999;
+        font-style: italic;
+    }
+
+    .wrapper {
+        max-width: 800px;
+        margin: 10px auto;
+        padding-top: 20px;
+        padding-left: 20px;
+        border-radius: 20px;
+        background: #c0e2df;
+        position: relative;
+        min-height: 550px;
+        overflow: hidden
+    }
+
+    .wrapper .wrap {
+        width: 700px;
+        transition: 0.6s
+    }
+
+    #q2,
+    #q3 {
+        left: 650px
+    }
+
+    .h4 {
+        margin: 0;
+        width: 100%;
+    }
+
+    label {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .options {
+        position: relative;
+        padding-left: 30px
+    }
+
+    .options input {
+        opacity: 0
+    }
+
+    .checkmark {
+        position: absolute;
+        top: -12px;
+        left: 3px;
+        height: 20px;
+        width: 20px;
+        background-color: #c0e2df;
+        border: 2px solid #444;
+        border-radius: 50%
+    }
+
+    .options input:checked~.checkmark:after {
+        display: block
+    }
+
+
+
+    .options input[type="radio"]:checked~.checkmark {
+        background: #24a3f8;
+        border: 2px solid #95ffdf;
+        transition: 300ms ease-in-out 0s
+    }
+
+    .options input[type="radio"]:checked~.checkmark:after {
+        transform: translate(-50%, -50%) scale(1)
+    }
+
+    .btn.btn-primary {
+        background-color: rgb(108, 211, 211);
+        border: 1px solid rgb(63, 139, 139)
+    }
+
+    #button2 {
+        border: 1px solid rgb(108, 211, 211);
+        border-radius: 10px;
+        top: -20px;
+    }
+
+
+</style>
+
+<span id="number">Câu thứ {{index}} trong {{length1}} </span> 
+<span id="number1">Thời gian: {{min}}:{{sec}}</span> 
+
+<div class="wrapper">
+    <div class="d-flex justify-content-end pt-2"> 
+        <button class="btn btn-primary" id="button2" ng-click="prev();">Prev </button>
+        <button class="btn btn-primary" id="button2" ng-click="next();">Next </button>
+        <button class="btn btn-primary" id="button2" ng-click="done();">Kết thúc </button>
+    </div>
+    <div class="wrap" id="q1" ng-repeat="ch in random15|limitTo:1:begin">
+        <div class="h4 font-weight-bold">{{ch.Text}}</div>
+        <div class="pt-4">
+            <form> 
+                <label ng-repeat="pa in ch.Answers" class="options">{{pa.Text}} <input type="radio" ng-click="getPA(pa.Id, ch.Text, ch.AnswerId)" name="pa" ng-model="$parent.selectedName" ng-value="{{pa.Id}}" value="{{pa.Id}}" > <span class="checkmark"></span></label> 
+            </form>
+        </div>
+    </div>
+</div>

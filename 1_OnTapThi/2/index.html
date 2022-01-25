@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TEST 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+    <script src="angular/angular.min.js"></script>
+    <script src="angular/angular-route-1-8-2.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+
+    <h3>{{Message}}</h3>
+    <input type="text" ng-model="fullname">
+    <h3>Nghĩa yêu {{fullname}}</h3>
+    <button class="btn btn-primary text-light" ng-click="hienRaNe()">úm ba la hiện ra</button>
+
+   <hr>
+
+   <ul>
+       <li>{{nguoiYeuCuaTui.fullname}}</li>
+       <li>{{nguoiYeuCuaTui.birthday}}</li>
+       <li>{{nguoiYeuCuaTui.gender}}</li>
+       <li>{{nguoiYeuCuaTui.nguoiYeu}}</li>
+   </ul>
+
+   <table class="table table-bordered">
+    <tr class="bg-primary text-light text-center">
+        <td>Fullname</td>
+        <td>Score</td>
+    </tr>
+    <tr ng-repeat="sv in lstSinhVien">
+        <td>{{sv.fullname}}</td>
+        <td>{{sv.score}}</td>
+    </tr>
+   </table>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.Message = "Anh yêu em";
+            $scope.fullname = "Hoàn";
+
+            $scope.hienRaNe = function(){
+                if($scope.fullname == "Hoàn" || $scope.fullname == "Trần Thị Hoàn"){
+                    alert("Người yêu của bạn là : " + $scope.fullname);
+                }else{
+                    alert("Đi chết đi mài !");
+                } 
+            };
+
+            $scope.nguoiYeuCuaTui = {
+                fullname : "Trần Thị Hoàn",
+                birthday : "31-03-2001",
+                gender : false,
+                nguoiYeu : "Trần Trung Nghĩa"
+            }
+
+            $scope.lstSinhVien = [
+                {
+                    fullname : "Nghia Tran",
+                    score : 10
+                },
+                {
+                    fullname : "Tran Thi Hoan",
+                    score : 10
+                },
+                {
+                    fullname : "Doan Hoai Nam",
+                    score : 9
+                }
+            ];
+
+
+        });
+    </script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+ 
+</body>
+</html>

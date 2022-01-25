@@ -1,0 +1,183 @@
+<style>
+    .modal-wrapper {
+        z-index: 10000000;
+    }
+
+    .btn {
+        margin-bottom: 20px;
+        height: 50px;
+    }
+     
+    .detail-modal {
+        width: 850px;
+        position: absolute;
+        background-color: transparent;
+        margin-top: 120px;
+        margin-left: 400px;
+    }
+
+    .modal-header1 h3{
+        position: relative;
+        text-align: center;
+        height: 50px;
+        color: white;
+        top: 10px;
+    }
+
+    .container-table100 {
+        background: #c850c0;
+        background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+        background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+        background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+        background: linear-gradient(45deg, #4158d0, #c850c0);
+
+    }
+
+    .table {
+        border-spacing: 1.2;
+        background: rgb(255, 255, 255);
+        overflow: hidden;
+        position: relative;
+    }
+
+
+
+    .table100-head {
+        font-family: OpenSans-Regular;
+        font-size: 18px;
+        color: #fff;
+        line-height: 1.2;
+        font-weight: unset;
+    }
+
+    .table tbody {
+        color: red;
+        width: 900px;
+    }
+
+    .table tbody tr:hover {
+        color: #555555;
+        background-color: aqua;
+        cursor: pointer;
+    }
+</style>
+<main>
+    <div class="container2" style="background-color: whitesmoke; font-weight: bold; border-radius: 20px;">
+        <div class="info">
+            <header>
+                <h3 style="color:rgb(24, 7, 34);">Thông tin Sinh Viên</h3>
+            </header>
+            <div class="table-wrapper">
+                <table class="table-users" style="color:rgb(24, 7, 34);">
+                    <tr>
+                        <th>Full name</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+                <button disabled hidden class="btn btn-add">Add User</button>
+            </div>
+
+            <!-- Edit info -->
+            <div class="edit-modal modal-wrapper">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Thay đổi thông tin</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" autocomplete="off">
+                            <span>Họ và tên</span>
+
+                            <input type="text" name="fullname" placeholder="Fullname">
+                            <span>Mật khẩu</span>
+                            <input type="password" name="password" placeholder="Password">
+
+                            <span>Email</span>
+                            <input disabled type="text" name="email" placeholder="Email">
+                            <button class="btn btn-modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="result" style="margin-top: 50px; color:rgb(24, 7, 34);">
+            <header>
+                <h3 style="color:rgb(24, 7, 34);">Kết Quả Quizz</h3>
+            </header>
+            <div class="table-wrapper">
+                <table class="table-users table-course">
+                    <tr>
+                        <th>Tên Môn Học</th>
+                        <th>Điểm</th>
+                        <th>View</th>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- Detail -->
+        <div class="detail-modal modal-wrapper">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+                        <div class="table100">
+                            <div class="modal-header1">
+                                <h3>Chi tiết kết quả</h3>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th >Câu hỏi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sai</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <button class="btn" ng-click="chitietprev()">Previous</button>
+                                <button class="btn" ng-click="chitietnext()">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+    // Logout clicked
+    const btnLogout = document.querySelector('.btn-logout');
+
+    btnLogout.addEventListener('click', () => {
+        alert("Bạn đã đăng xuất khỏi tài khoản!!!");
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+            localStorage.clear();
+
+            window.location.href = 'index.html';
+        });
+
+    });
+</script>
+<script src="/Assignment/assets/js/result.js"></script>

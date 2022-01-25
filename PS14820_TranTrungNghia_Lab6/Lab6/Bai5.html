@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+    <div class="container w-25">
+        .<div class="card">
+            <div class="card-header bg-secondary text-center text-light font-weight-bold">
+                CUSTOM VALIDATION
+            </div>
+            <div class="card-body">
+                <form name="frm">
+                    <label>Số Poly</label>
+                    <input class="form-control" type="number" required ng-model="number" name="polyNumber" poly-number>
+                </form>
+                <span class="text-danger" ng-show="frm.polyNumber.$invalid && frm.polyNumber.$dirty">Số này không chia
+                    hết cho 2 và 9</span>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-success" ng-click="kiemTra();">Kiểm tra</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.directive("polyNumber", function () {
+            return {
+                restrict: "A",
+                require: "ngModel",
+                link: function (scope, element, attr, mCtrl) {
+                    mCtrl.$parsers.push(function (value) {
+                        var number = parseInt(value);
+                        if (number % 2 == 0 && number % 9 == 0) {
+                            mCtrl.$setValidity('charE', true);
+                        } else {
+                            mCtrl.$setValidity('charE', false);
+                        }
+                        return value;
+                    });
+                }
+            }
+        });
+    </script>
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 3</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="angularJS/angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        .<div class="card">
+            <div class="card-header bg-secondary text-center">
+                <h3 class="font-weight-bold text-light">TÍNH THƯỞNG TẾT NGUYÊN ĐÁN</h3>
+            </div>
+            <div class="card-body">
+                <form name="frmBonus">
+                    <div class="form-group">
+                        <label for="txtHoTen">Họ và tên</label>
+                        <input type="text" id="txtHoTen" class="form-control" name="txtHoTen" required>
+                        <span ng-show="frmBonus.txtHoTen.$invalid">Vui lòng nhập họ tên</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLuong">Lương</label>
+                        <input type="number" min="2000000" name="txtLuong" id="txtLuong" ng-model="salary" class="form-control">
+                        <div class="input-group-addon">VNĐ</div>
+                        <span ng-show="frmBonus.txtLuong.$invalid">Nhập lương (ít nhât 2 triệu)</span>
+                    </div>
+                    <span class="mr-3">Giới tính</span>
+                    <div class="form-control">
+                        <label class="radio-inline mr-3">
+                            <input type="radio" ng-model="gender" value="NAM">
+                            Nam
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="gender" value="NU">
+                            Nữ
+                        </label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">Độ tuổi</label>
+                        <select class="form-control form-control-lg" ng-model="age" ng-options="x.age for x in ages">
+
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                Tiền thưởng : <strong>{{getBonus() | number:2}}</strong> VNĐ
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.ages = [
+                {
+                    age: "Dưới 25",
+                    rate: 0.07
+                },
+                {
+                    age: "Từ 25 đến 40",
+                    rate: 0.1
+                },
+                {
+                    age: "Trên 40",
+                    rate: 0.15
+                }
+            ];
+            $scope.age = $scope.ages[1];
+            $scope.gender = "NAM"; // CHECKED 
+            $scope.getBonus = function () {
+                var bonus = $scope.age.rate * $scope.salary;
+                if ($scope.gender == "NU") {
+                    bonus += 200000;
+                }
+                return bonus;
+            }
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

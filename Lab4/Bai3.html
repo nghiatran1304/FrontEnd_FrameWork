@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        img {
+            max-height: 150px;
+            max-width: 95%;
+        }
+
+        tbody tr td{
+            vertical-align: middle !important;
+        }
+
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div class="container mt-5 text-center" ng-controller="myCtrl">
+        <table class="table table-bordered table-condensed table-hover">
+            <thead class="bg-success text-light">
+                <tr>
+                    <th>Hình</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">
+                        <img src="{{student[0].imgLink}}" alt="">
+                    </td>
+                    <td>{{student[0].fullName}}</td>
+                    <td>{{student[0].birthDay}}</td>
+                    <td>{{student[0].gender}}</td>
+                    <td>{{student[0].score}}</td>
+                </tr>
+                <tr>
+                    <td scope="row">
+                        <img src="{{student[1].imgLink}}" alt="">
+                    </td>
+                    <td>{{student[1].fullName}}</td>
+                    <td>{{student[1].birthDay}}</td>
+                    <td>{{student[1].gender}}</td>
+                    <td>{{student[1].score}}</td>
+                </tr>
+                <tr>
+                    <td scope="row">
+                        <img src="{{student[2].imgLink}}" alt="">
+                    </td>
+                    <td>{{student[2].fullName}}</td>
+                    <td>{{student[2].birthDay}}</td>
+                    <td>{{student[2].gender}}</td>
+                    <td>{{student[2].score}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.student = [
+                {
+                    imgLink: "images/meliodas.png",
+                    fullName: "Trần Trung Nghĩa",
+                    birthDay: "13/04/1997",
+                    gender: "Nam",
+                    score: 10
+                },
+                {
+                    imgLink: "images/kinh.png",
+                    fullName: "Nghĩa Trần",
+                    birthDay: "13/04/1997",
+                    gender: "Nam",
+                    score: 5
+                },
+                {
+                    imgLink: "images/diane.png",
+                    fullName: "Bạch Ngọc Thanh Xuân",
+                    birthDay: "26/01/1997",
+                    gender: "Nữ",
+                    score:8
+                }
+            ];
+        });
+    </script>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

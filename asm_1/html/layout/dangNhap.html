@@ -1,0 +1,63 @@
+<style>
+    body {
+        background-image: url(../images/bgLogin.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .dn .card {
+        max-width: 400px;
+    }
+
+    .dn input {
+        max-width: 400px;
+    }
+
+    .dn img {
+        border-radius: 100%;
+        max-width: 100px;
+    }
+
+    .dn .userName {
+        min-height: 100px;
+    }
+
+    .dn .passWord {
+        min-height: 100px;
+    }
+
+</style>
+
+<div class="container text-center dn mt-5">
+    <div class="card container-fluid p-0">
+        <div class="card-header bg-secondary">
+            <img src="../images/avatar.png" alt="" class="img-fluid">
+        </div>
+        <div class="card-body">
+            <form name="frmLogin" id="frmLogin">
+                <div class="form-group userName">
+                    <label for="username" class="float-left font-weight-bold">Tên đang nhập</label>
+                    <input type="text" class="form-control" ng-model="username" name="username" id="username" required
+                        maxlength="25" placeholder="Tên đăng nhập">
+                    <small ng-show="frmLogin.username.$invalid" id="username"
+                        class="form-text text-danger float-left">Vui lòng
+                        nhập tài khoản</small>
+                </div>
+                <div class="form-group mt-3 passWord">
+                    <label for="password" class="float-left font-weight-bold">Mật khẩu</label>
+                    <input type="password" class="form-control" ng-model="password" name="password" id="password"
+                        required maxlength="25" placeholder="Tên đăng nhập">
+                    <small ng-show="frmLogin.password.$invalid" id="password"
+                        class="form-text text-danger float-left">Vui lòng
+                        nhập mật khẩu</small>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button ng-click='login()' class="btn alert-primary text-danger font-weight-bold">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

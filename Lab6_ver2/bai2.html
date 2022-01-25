@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <title>Bài2-Lab6</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body>* {
+            flex-shrink: 0;
+        }
+
+        nav .nav-item:hover .nav-link {
+            opacity: 0.7;
+        }
+
+        main {
+            flex-grow: 1;
+            background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+        }
+
+        /* top-left border-radius */
+        table tr:first-child th:first-child {
+            border-top-left-radius: 5px;
+        }
+
+        /* top-right border-radius */
+        table tr:first-child th:last-child {
+            border-top-right-radius: 5px;
+        }
+
+        /* bottom-left border-radius */
+        table tr:last-child td:first-child {
+            border-bottom-left-radius: 5px;
+        }
+
+        /* bottom-right border-radius */
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 5px;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-uppercase" href="#">Quản lý thể loại</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai1.html">Bài 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai2.html">Bài 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai3.html">Bài 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai4.html">Bài 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container-fluid h-100">
+            <div class="row h-100 g-3">
+                <article class="col-md-8 overflow-auto pt-3">
+                    <table class="table table-responsive table-hover table-warning h-100 m-0">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">ID</th>
+                                <th scope="col">Tên thể loại</th>
+                                <th class="text-center" scope="col">Thứ tự</th>
+                                <th class="text-center" scope="col">Tên KD</th>
+                                <th class="text-center" scope="col">Số tin</th>
+                                <th class="text-center" scope="col">Phụ trách</th>
+                                <th class="text-center" scope="col">Ẩn hiện</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tl in listtheloai" ng-click="chonTL($index)">
+                                <td class="text-center">{{tl.idTL}}</td>
+                                <td>{{tl.TenTL | uppercase}}</td>
+                                <td class="text-center">{{tl.ThuTu}}</td>
+                                <td class="text-center">{{tl.TenKD == "" ? "Chưa có" : tl.TenKD}}</td>
+                                <td class="text-center">{{tl.SoTin}}</td>
+                                <td class="text-center">{{tl.un == "" ? "Chưa có" : tl.un}}</td>
+                                <td class="text-center">
+                                    <span ng-if="tl.AnHien==0">Đang ẩn</span>
+                                    <span ng-if="tl.AnHien==1">Đang hiện</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <aside class="col-md-4 pt-3">
+                    <form name="frmThemTL" class="border p-3 mb-3 rounded bg-light bg-opacity-75" novalidate>
+                        <div class="form-group mb-3">
+                            <label for="tenTL" class="form-label">Tên thể loại</label>
+                            <input type="text" name="tenTL" ng-model="tlhientai.TenTL" class="form-control" id="tenTL"
+                                required ng-minlength="3" ng-maxlength="25">
+                            <div ng-show="frmThemTL.tenTL.$invalid && frmThemTL.tenTL.$touched" class="badge bg-danger fst-italic">
+                                Nhập tên thể loại từ 3 - 25 ký tự
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="thuTu" class="form-label">Thứ tự</label>
+                            <input type="number" name="thuTu" ng-model="tlhientai.ThuTu" class="form-control" id="thuTu"
+                                required ng-min="1" ng-max="23">
+                            <div ng-show="frmThemTL.thuTu.$invalid && frmThemTL.thuTu.$touched" class="badge bg-danger fst-italic">
+                                Nhập số thứ tự từ 1 - 23
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="tenTLKhongDau" class="form-label">Tên TL không dấu</label>
+                            <input type="text" name="tenTLKhongDau" ng-model="tlhientai.TenKD" class="form-control"
+                                id="tenTLKhongDau" ng-pattern="/^[a-zA-Z0-9-]*$/" required>
+                            <div ng-show="frmThemTL.tenTLKhongDau.$invalid && frmThemTL.tenTLKhongDau.$touched" class="badge bg-danger fst-italic">
+                                Tên thể loại không dấu chỉ có chữ, số và dấu -
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="soTin" class="form-label">Số tin</label>
+                            <input type="number" name="soTin" ng-model="tlhientai.SoTin" class="form-control" id="soTin"
+                                ng-min="1" required>
+                            <div ng-show="frmThemTL.soTin.$invalid && frmThemTL.soTin.$touched" class="badge bg-danger fst-italic">
+                                Số tin là số nguyên > 0
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label me-3">Trạng thái: </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="trangThai" id="an"
+                                    ng-model="tlhientai.AnHien" ng-checked="tlhientai.AnHien == 0" value="0">
+                                <label class="form-check-label" for="an">Ẩn</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="trangThai" id="hien"
+                                    ng-model="tlhientai.AnHien" ng-checked="tlhientai.AnHien == 1" value="1">
+                                <label class="form-check-label" for="hien">Hiện</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="nguoiPhuTrach" class="form-label">Người phụ trách</label>
+                            <select class="form-select" id="nguoiPhuTrach" ng-model="tlhientai.un">
+                                <option value="{{u.un}}" ng-repeat="u in listusername">{{u.hoten}}</option>
+                            </select>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center">
+                            <button ng-disabled="frmThemTL.$invalid" ng-click="save()" type="submit"
+                                class="btn btn-success w-50">Lưu</button>
+                            <button type="button" ng-click="save()" class="btn btn-danger w-50">Huỷ</button>
+                        </div>
+                    </form>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://kit.fontawesome.com/a1dd73cfa4.js"></script>
+    <script src="./js/theloai.js"></script>
+    <script>
+        function removeAccents(str) {
+            str = str.trim();
+            str = str.toLowerCase();
+            return str.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+                .replace(/\u0020/g, '-')
+                .replace("&", "And")
+        }
+
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.index = 0;
+            $scope.listtheloai = theloai;
+
+            $scope.tlhientai = {};
+            $scope.tlhientai.AnHien = 0;
+
+            $scope.listusername = [{
+                    un: "dodatcao",
+                    hoten: "Đỗ Đạt Cao"
+                },
+                {
+                    un: "huahoai",
+                    hoten: "Hứa Hoài"
+                },
+                {
+                    un: "thihoai",
+                    hoten: "Thi Hoài"
+                },
+                {
+                    un: "phamkyluat",
+                    hoten: "Phạm Kỷ Luật"
+                }
+            ];
+            $scope.chonTL = function (chiso) {
+                $scope.index = chiso;
+                $scope.tlhientai = angular.copy($scope.listtheloai[chiso]);
+                $scope.tlhientai.un = $scope.tlhientai.un.toLowerCase();
+                //$scope.tlhientai.TenKD = removeAccents($scope.tlhientai.TenTL);
+            }
+            $scope.save = function () {
+                $scope.listtheloai[$scope.index] = angular.copy($scope.tlhientai);
+                $scope.tlhientai = {};
+                $scope.tlhientai.AnHien = 0;
+            }
+            $scope.cancel = function () {
+                $scope.index = -1;
+                $scope.tlhientai = {};
+                $scope.tlhientai.AnHien = 0;
+            }
+        });
+    </script>
+</body>
+
+</html>

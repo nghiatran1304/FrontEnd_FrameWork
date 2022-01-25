@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark font-weight-bold" id="myHeader" style="font-size: 20px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-warning" href="#!home"><i class="fas fa-home"></i>
+                    Trang chủ
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="dangnhapTrangChu" href="#!dangnhap"><i class="fab fa-elementor"></i>
+                    Quiz
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="hienKetQua" href="#!ketqua"><i class="fab fa-elementor"></i>
+                    Kết Quả
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="gioiThieu" href="#!gioithieu"><i class="fas fa-indent"></i>
+                    Giới thiệu</a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="lienhe" href="#!lienhe"><i class="fas fa-phone"></i> Liên
+                    hệ</a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="gopy" href="#!gopy"><i class="fas fa-mail-bulk"></i> Góp
+                    ý</a>
+            </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link text-warning" id="hoidap" href="#!hoidap"><i class="far fa-comments"></i> Hỏi
+                    đáp</a>
+            </li>
+            <!-- <li class="nav-item dropdown ml-3"> -->
+            <li class="nav-item dr ml-3">
+                <a class="nav-link dropdown-toggle text-warning dropbtn" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-tie"></i> Tài khoản
+                </a>
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+                <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item font-weight-bold text-danger" id="dangnhap" href="#!dangnhap"><i
+                            class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                    <a class="dropdown-item font-weight-bold text-danger" ng-click="logoff()" href="#!dangnhap"><i
+                            class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    <a class="dropdown-item font-weight-bold text-danger" href="#!dangky"><i
+                            class="fas fa-user-plus"></i> Đăng ký</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item font-weight-bold text-primary" href="#!quenmatkhau"><i
+                            class="fas fa-file-signature"></i> Quên mật khẩu</a>
+                    <a class="dropdown-item font-weight-bold text-primary" href="#!doimatkhau" id="doiMatKhau"
+                        ng-click="kiemTraDangNhapDoiMatKhau()"><i class="fas fa-retweet"></i> Đổi mật khẩu</a>
+                    <a class="dropdown-item font-weight-bold text-primary" ng-click="kiemtraDangNhap()"
+                        href="#!suadoithongtin" id="suadoithongtin"><i class="fas fa-address-card"></i> Sửa đổi thông tin</a>
+                </div>
+            </li>
+            <!-- <li class="nav-item dr ml-3">
+                <div class="header-btn d-none f-right d-lg-block">
+                    <a ng-href="{{check}}" class="btn head-btn2 text-warning" ng-click="logout();">{{checkLogin}}</a>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+</nav>

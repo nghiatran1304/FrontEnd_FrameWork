@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 3</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+    
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-app="myApp" ng-controller="myCtrl">
+        <form class="w-50 offset-2">
+            <div class="card">
+                <div class="card-header bg-secondary text-light font-weight-bold text-center">
+                    <h2>CHU VI - DIỆN TÍCH</h2>
+                    <h4>HÌNH CHỮ NHẬT</h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="chieuDai" class="text-primary font-weight-bold">Chiều dài</label>
+                        <input type="number" name="" id="chieuDai" ng-model="chieuDai" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="chieuRong" class="text-primary font-weight-bold">Chiều rộng</label>
+                        <input type="number" name="" id="chieuRong" ng-model="chieuRong" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="chuVi" class="text-danger font-weight-bold">Chu Vi</label>
+                                <div type="number" name="" readonly id="chuVi" ng-bind="chuVi" class="form-control"></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="dienTich" class="text-danger font-weight-bold">Diện tích</label>
+                                <div type="number" name="" readonly id="dienTich" ng-bind="dienTich"
+                                    class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-success" ng-click="tinhToan()">TÍNH TOÁN</button>
+                    <button class="btn btn-danger" ng-click="randomSo()">RANDOM</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.tinhToan = function(){
+                var a = parseFloat($scope.chieuDai);
+                var b = parseFloat($scope.chieuRong);
+                
+                $scope.chuVi = (a + b) * 2;
+                $scope.dienTich = a * b;
+            }
+
+            $scope.randomSo = function(){
+                $scope.chieuDai = Math.round(Math.random() * 100);
+                $scope.chieuRong = Math.round(Math.random() * 100);
+            }
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 1</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="angularJS/angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+    <div class="container">
+        <div class="offset-lg-1 mt-3 mb-5" ng-controller="formController">
+            <form>
+                <div class="card">
+                    <div class="card-header bg-info text-center">
+                        <h3 class="font-weight-bold text-light">EDIT PROFILE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="fullname">Họ và tên</label>
+                            <input type="text" id="fullname" class="form-control" ng-model="student.fullname">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">Ngày sinh</label>
+                            <input type="text" id="birthday" class="form-control" ng-model="student.birthday">
+                        </div>
+                        <div class="form-group">
+                            <label for="mark">Điểm</label>
+                            <input type="text" class="form-control" ng-model="student.mark">
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-success" ng-click="save()">Lưu</button>
+                        <button class="btn btn-warning" ng-click="cancel()">Hủy</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="offset-lg-1" ng-controller="tableController">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Điểm</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{lstStudents[0].fullname}}</th>
+                        <td>{{lstStudents[0].birthday}}</td>
+                        <td>{{lstStudents[0].mark}}</td>
+                        <td>
+                            <a href="#" ng-click="edit(0)">Sửa</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{lstStudents[1].fullname}}</th>
+                        <td>{{lstStudents[1].birthday}}</td>
+                        <td>{{lstStudents[1].mark}}</td>
+                        <td>
+                            <a href="#" ng-click="edit(1)">Sửa</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+     <script>
+         var app = angular.module("myApp", []);
+         app.controller("formController", function($scope){
+            $scope.$parent.student = {};
+            $scope.save = function(){
+                $scope.$parent.lstStudents[$scope.$parent.index] = $scope.student;
+            }
+            
+            $scope.cancel = function(){
+                $scope.$parent.student = angular.copy($scope.$parent.lstStudents[$scope.$parent.index]);
+            }
+         });
+
+         app.controller("tableController", function($scope){
+
+            $scope.$parent.lstStudents = [
+                {
+                    fullname : "Trần Trung Nghĩa",
+                    birthday : "13-04-1997",
+                    mark : 9
+                },
+                {
+                    fullname : "Nghĩa Trần",
+                    birthday : "02-10-1997",
+                    mark : 10
+                }
+            ];
+
+            $scope.edit = function(index){
+                $scope.$parent.index = index;
+                $scope.$parent.student = angular.copy($scope.$parent.lstStudents[index]);
+            }
+            
+         });
+     </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

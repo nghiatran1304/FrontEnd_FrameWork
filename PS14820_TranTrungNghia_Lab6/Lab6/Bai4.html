@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 4</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        input.ng-invalid {
+            background-image: url("images/fire.gif");
+            background-position: center right;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div class="container mt-5" ng-controller="myCtrl">
+        <div class="card w-50 m-auto">
+            <div class="card-header bg-primary text-light font-weight-bold text-center">
+                <h2>THÔNG TIN SINH VIÊN</h2>
+            </div>
+            <div class="card-body">
+                <form name="frm">
+                    <div class="form-group">
+                        <label for="hoTen">Họ và tên</label>
+                        <input type="text" class="form-control" ng-model="hoTen" id="hoTen" name="hoTen"
+                            aria-describedby="hoTenHelp" placeholder="Nhập họ tên" required maxlength="25">
+                        <small id="hoTenHelp" class="form-text text-danger" ng-show="frm.hoTen.$invalid">Nhập họ tên tối
+                            đa 25 kí tự</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="diem">Điểm</label>
+                        <input type="number" class="form-control" ng-model="diem" id="diem" name="diem"
+                            aria-describedby="diemHelp" placeholder="Nhập điểm" max="10" min="0" required value="0">
+                        <small id="diemHelp" class="form-text text-danger" ng-show="frm.diem.$invalid">Nhập điểm từ 0
+                            đến 10</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" ng-model="email" id="email" name="email"
+                            placeholder="Nhập Email" aria-describedby="emailHelp" required>
+                        <small id="emailHelp" class="form-text text-danger" ng-show="frm.email.$invalid">Nhập email đúng
+                            định dạng</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="soXe">Số xe</label>
+                        <input type="text" class="form-control" ng-model="soXe" id="soXe" name="soXe"
+                            pattern="5\d-[A-Z]\d-((\d{4})|(\d{3}\.\d{2}))" aria-describedby="soXeHelp"
+                            placeholder="Nhập số xe" max="10" min="0" required value="0">
+                        <small id="soXeHelp" class="form-text text-danger" ng-show="frm.soXe.$invalid">Định dạng số xe
+                            TP.HCM ví dụ : 54-P6-6661</small>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <button type="button" class="btn btn-primary pl-5 pr-5">Lưu</button>
+            </div>
+        </div>
+        <br>
+        <div ng-if="frm.$valid" class="alert alert-success text-center w-75 m-auto">Chúc mừng bạn đã nhập đúng</div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function ($scope) {
+
+        });
+    </script>
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

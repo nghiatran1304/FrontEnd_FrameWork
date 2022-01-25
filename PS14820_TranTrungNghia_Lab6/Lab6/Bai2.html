@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bài 2</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <script src="angularJS/angular.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+  <style>
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  </style>
+</head>
+
+<body ng-app="myApp">
+  <div class="container" ng-controller="myCtrl">
+    <div class="card">
+      <div class="card-header bg-secondary text-center">
+        <h3 class="text-light font-weight-bold">BÁN HÀNG GIẢI KHÁT</h3>
+      </div>
+      <div class="card-body p-0">
+        <form>
+          <table class="table table-bordered">
+            <thead class="text-center bg-secondary text-light">
+              <tr>
+                <th>Chọn</th>
+                <th>Tên hàng</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="product in lstProducts" ng-init="product.quantity = 1">
+                <td scope="row" class="text-center">
+                  <input type="checkbox" ng-model="product.buy" />
+                </td>
+                <td ng-bind="product.name" class="text-danger font-weight-bold text-center"></td>
+                <td>
+                  <div class="form-group">
+                    <input type="number" class="form-control" ng-model="product.quantity" ng-disabled="!product.buy" />
+                  </div>
+                </td>
+                <td ng-bind="product.price | currency" class="text-center"></td>
+                <td ng-bind="product.price * product.quantity | currency" class="text-center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="card-footer">
+        <span>TỔNG TIỀN : {{getAmount() | currency : '$' : 2}} VNĐ</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+      $scope.lstProducts = [{
+          name: "Coca cola",
+          price: 15000
+        },
+        {
+          name: "Milk Tea",
+          price: 50000
+        },
+        {
+          name: "Cocktail",
+          price: 200000
+        }
+      ];
+
+      $scope.getAmount = function () {
+        var amount = 0;
+        for (var i = 0; i < $scope.lstProducts.length; i++) {
+          if ($scope.lstProducts[i].buy) {
+            amount += $scope.lstProducts[i].price * parseInt($scope.lstProducts[i].quantity);
+          }
+        }
+        return amount;
+      }
+    });
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js/jquery-3.5.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

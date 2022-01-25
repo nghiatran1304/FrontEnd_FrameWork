@@ -1,0 +1,43 @@
+
+    <main>
+        <div class="main">
+
+            <section class="signup">
+                <!-- <img src="images/signup-bg.jpg" alt=""> -->
+                <div class="container1">
+                    <div class="form">
+                        <div class="signup-content">
+                            <h2 class="form-title">Đăng ký tài khoản</h2>
+                            <div class="form-group">
+                                <input type="text" class="form-input" ng-bind="tcten" ng-model="fullname" name="fullnamename" id="name"
+                                    placeholder="Họ và tên" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-input" ng-bind="tcemail" ng-model="email" name="email" id="email"
+                                    placeholder="Địa chỉ email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-input" ng-bind="tcpass1" ng-model="password" name="password" id="password"
+                                    placeholder="Mật khẩu" />
+                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-input" ng-bind="tcpass" ng-model="repassword" name="re_password"
+                                    id="re_password" placeholder="Xác nhận mật khẩu" />
+                            </div>
+
+                            <div class="form-group">
+                                <button class="form-submit btn-modal" ng-click="dangky();">Đăng ký</button>
+                            </div>
+                            <p class="loginhere">
+                                Đã có tài khoản? <a href="#!login" class="loginhere-link">Đăng Nhập</a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+    </main>

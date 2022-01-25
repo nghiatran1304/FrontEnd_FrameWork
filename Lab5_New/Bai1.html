@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 1</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="angularJS/angular.min.js"></script>
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div class="container">
+        <div class="card mt-5" ng-controller="myCtrl">
+            <div class="card-header bg-info text-light font-weight-bold">
+                <i class="fas fa-list"></i> FORM THÔNG TIN SINH VIÊN
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="hoTen"><i class="fas fa-user"></i> Họ và tên</label>
+                        <input type="text" id="hoTen" class="form-control" ng-model="$parent.student.fullname">
+                    </div>
+                    <div class="form-group">
+                        <label for="ngaySinh"><i class="fas fa-birthday-cake"></i> Ngày sinh</label>
+                        <input type="text" id="ngaySinh" class="form-control" ng-model="$parent.student.birthday">
+                    </div>
+                    <div class="form-group">
+                        <label for="diem"><i class="fas fa-pencil-ruler"></i> Điểm</label>
+                        <input type="number" id="diem" class="form-control" ng-model="$parent.student.score">
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success mr-5" ng-click="save()"><i class="fas fa-save"></i> Lưu</button>
+                        <button class="btn btn-danger ml-5" ng-click="cancel()"><i class="fas fa-calendar-times"></i>
+                            Hủy</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <small class="float-right"><i>Chú ý: nhập điểm là số từ 0-10, ngày dd/MM/yyyy</i></small>
+            </div>
+        </div>
+
+        <table class="mt-5 table table-bordered table-hover" ng-controller="myCtrl1">
+            <thead>
+                <tr class="text-center text-light font-weight-bold bg-secondary">
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Điểm</th>
+                    <th scope="col">Chỉnh sửa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="st in lstStudents">
+                    <th scope="row">{{st.fullname}}</th>
+                    <td>{{st.birthday}}</td>
+                    <td>{{st.score}}</td>
+                    <td class="text-center">
+                        <a class="btn btn-primary" href="#" ng-click="edit($index)">Sửa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.$parent.student = {};
+            $scope.save = function () {
+                var diem = parseInt($scope.$parent.student.score);
+                if (diem < 0 || diem > 10) {
+                    alert("Điểm không hợp lệ");
+                } else {
+                    $scope.$parent.lstStudents[$scope.$parent.index] = $scope.student;
+                    $scope.$parent.student = {};
+                }
+            }
+
+            $scope.cancel = function () {
+                $scope.$parent.student = angular.copy($scope.$parent.lstStudents[$scope.$parent.index]);
+            }
+        });
+
+        app.controller("myCtrl1", function ($scope) {
+            $scope.$parent.lstStudents = [{
+                    fullname: "Trần Trung Nghĩa",
+                    birthday: "13-04-1997",
+                    score: 10
+                },
+                {
+                    fullname: "Nghĩa Trần",
+                    birthday: "13-04-1997",
+                    score: 8
+                },
+                {
+                    fullname: "Trần Nghĩa",
+                    birthday: "13-04-1997",
+                    score: 9
+                }
+            ];
+
+            $scope.edit = function (index) {
+                // tạo biến index và đặt trong scope cha
+                $scope.$parent.index = index;
+                $scope.$parent.student = angular.copy($scope.$parent.lstStudents[index]);
+            }
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

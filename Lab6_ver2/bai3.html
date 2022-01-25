@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <title>Bai3-Lab6</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+        }
+
+        nav .nav-item:hover .nav-link {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-uppercase fw-bolder" href="#">Bán hàng giải khát - {{dateCurrent}}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai1.html">Bài 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai2.html">Bài 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai3.html">Bài 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="./bai4.html">Bài 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container-fluid p-3">
+            <form name="form">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="bg-secondary text-light">
+                            <th class="text-center align-middle"><input type="checkbox" ng-model="buyAll"
+                                    ng-click="checkAll()" class="form-check-input"></th>
+                            <th class="align-middle">{{"Tên hàng" | uppercase}}</th>
+                            <th class="text-center align-middle">{{"Số lượng" | uppercase}}</th>
+                            <th class="text-center align-middle">{{"Đơn giá (VNĐ)" | uppercase}}</th>
+                            <th class="text-center align-middle">{{"Tiền (VNĐ)" | uppercase}}</th>
+                            <th class="text-center align-middle">{{"Khuyến mãi" | uppercase}}</th>
+                            <th class="text-center align-middle">{{"Còn lại (VNĐ)" | uppercase}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in products | orderBy:'-price'" class="bg-light">
+                            <th class="text-center align-middle">
+                                <input type="checkbox" ng-model="p.buy" ng-click="checkOne(p);" class="form-check-input">
+                            </th>
+                            <td class="align-middle">{{p.name}}</td>
+                            <td class="text-center align-middle" style="width: 217px;">
+                                <!--  oninput="validity.valid||(value='');" -->
+                                <input type="number" name='quantityInput{{$index}}' ng-model="p.quantity" 
+                                    ng-disabled="!p.buy;" min=1 max=25 class="form-control" required>
+                                <div ng-show="form.quantityInput{{$index}}.$invalid&&p.buy" class="badge bg-danger fst-italic">
+                                    Chỉ chấp nhận giá trị từ 1 đến 25
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">{{p.price | number}}</td>
+                            <td class="text-center align-middle">{{p.total = p.quantity * p.price | number}}</td>
+                            <td class="text-center align-middle">{{p.promotion = getPromotion(p.quantity)}}</td>
+                            <td class="text-center align-middle">{{p.total - p.promotion | number}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-secondary text-light">
+                            <th colspan="7" class="text-uppercase text-end fw-bolder">
+                                Tổng tiền: <span class="text-warning">{{getTotal() | number}}</span>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://kit.fontawesome.com/a1dd73cfa4.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $scope.products = [];
+            $scope.dateCurrent = new Date().toLocaleDateString();
+            $http.get("./js/sanpham.js").then(
+                function (r) {
+                    $scope.products = r.data;
+                },
+                function (d) {
+                    alert("Lỗi: " + d.statusText);
+                }
+            );
+            $scope.getTotal = function () {
+                var total = 0;
+                for (var i = 0; i < $scope.products.length; i++) {
+                    if ($scope.products[i].buy) {
+                        total += $scope.products[i].total - $scope.products[i].promotion;
+                    }
+                }
+                return total;
+            }
+
+            $scope.checkAll = function () {
+                for (var i = 0; i < $scope.products.length; i++) {
+                    $scope.products[i].buy = !$scope.buyAll;
+                }
+
+                if ($scope.buyAll) {
+                    for (var i = 0; i < $scope.products.length; i++) {
+                        $scope.products[i].quantity = undefined;
+                    }
+                } 
+                else {
+                    for (var i = 0; i < $scope.products.length; i++) {
+                        $scope.products[i].quantity = 0;
+                    }
+                }
+            }
+
+            $scope.checkOne = function (product) {
+                if (product.buy) {
+                    product.quantity = undefined;
+                } else {
+                    product.quantity = 0;
+                }
+
+                var check = true;
+                for (var i = 0; i < $scope.products.length; i++) {
+                    if ($scope.products[i].buy) {
+                        check = false;
+                        break;
+                    }
+                }
+                if (!check) {
+                    $scope.buyAll = false;
+                }
+            }
+
+            $scope.getPromotion = function (quantity) {
+                if (quantity >= 15) return 100000;
+                else if (quantity >= 10) return 60000;
+                else if (quantity >= 5) return 20000;
+                else return 0;
+            }
+        });
+    </script>
+</body>
+
+</html>

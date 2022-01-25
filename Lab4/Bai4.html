@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div class="container mt-5" ng-controller="myCtrl">
+        <form class="w-50">
+            <div class="form-group">
+                <label for="chieuDai">Chiều dài</label>
+                <input ng-model="chieuDai" type="number" class="form-control" id="chieuDai" placeholder="Nhập chiều dài">
+            </div>
+            <div class="form-group">
+                <label for="chieuRong">Chiều rộng</label>
+                <input ng-model="chieuRong" type="number" class="form-control" id="chieuRong" placeholder="Nhập chiều rộng">
+            </div>
+            <div class="form-group">
+                <label>Diện tích</label>
+                <input type="text" class="form-control" readonly ng-model="dienTich">
+            </div>
+            <div class="form-group">
+                <label>Chu vi</label>
+                <input type="text" class="form-control" readonly ng-model="chuVi">
+            </div>
+
+            <button type="button" class="btn btn-success" ng-click="calculate();">Calculate</button>
+        </form>
+    </div>
+
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.calculate = function(){
+                var a = parseFloat($scope.chieuDai);
+                var b = parseFloat($scope.chieuRong);
+                if(a <= 0 || b <= 0){
+                    alert('Chiều dài và chiều rộng phải lớn hơn 0 !');
+                }else{
+                    $scope.chuVi = (a + b) * 2;
+                    $scope.dienTich = a * b;
+                }
+            }
+        });
+    </script>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstudentrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="angularJS/angular.min.js"></script>
+    <style>
+        .card-footer{
+            background-color: honeydew;
+        }
+    </style>
+</head>
+  <body>   
+    <div class="container" ng-app="myApp" ng-controller="myCtrl">
+        <div class="card offset-1 w-75 mt-5">
+            <div class="card-header text-center bg-info text-light font-weight-bold">
+                <h2>{{tittle}}</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p>Tên đăng nhập : <span>{{student.username}}</span> </p>
+                        <p>Mật khẩu : <span>{{student.password}}</span></p>
+                        <p>Học phí : <span class="text-danger font-weight-bold">{{student.fee}} VNĐ</span></p>
+                        <p class="text-danger font-weight-bold">Điểm : {{student.score}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>Họ tên : <span>{{student.fullname}}</span></p>
+                        <p>Giới tính : <span>{{student.gender}}</span></p>
+                        <p>Ngày sinh : <span>{{student.birthday}}</span></p>
+                        <p>Email : <span>{{student.email}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <small>Giới tính <b>true</b> là nam |  Giới tính <b>false</b> là nữ </small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.tittle = "THÔNG TIN SINH VIÊN";
+            $scope.student = {
+                username: "PS14620",
+                password: "matKhauCuaTuiNe",
+                fee : 9870000,
+                score : 10,
+                fullname : "Trần Trung Nghĩa",
+                gender : true,
+                birthday : "13-04-1997",
+                email : "nghiattps14820@fpt.edu.vn"
+            }
+        })
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery firstudent, then Popper.js, then Bootstudentrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JstudentQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://studentackpath.bootstudentrapcdn.com/bootstudentrap/4.3.1/js/bootstudentrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÀI 4</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-pro-5.13.0/css/all.min.css">
+    <style>
+        thead th {
+            text-align: center !important;
+            vertical-align: middle !important;
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Nhập Lương
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> NHẬP LƯƠNG THÁNG 12
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" id="idNhanViên" class="form-control"
+                                            placeholder="Mã Nhân Viên">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" id="hoTen" class="form-control" placeholder="Nhập họ tên">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <select class="form-control" id="clb">
+                                            <option>TP.HCM</option>
+                                            <option>Đà Nẵng</option>
+                                            <option>Hà Nội</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" id="luong" class="form-control" placeholder="Nhập lương">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" id="thuong" class="form-control"
+                                            placeholder="Nhập tiền thưởng">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" id="phuCap" class="form-control" placeholder="Nhập phụ cấp">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <textarea name="ghiChu" id="ghiChu" cols="5" rows="3" class="form-control"
+                                            style="resize: none;" placeholder="Ghi chú"></textarea>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    Vui lòng nhập thông tin lương cầu thủ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                        <button class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

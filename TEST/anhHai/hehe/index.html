@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    // Sửa content=""
+    <meta name="google-signin-client_id" content="38103395762-a03gvbvshdtca3gkcu93hro5gajsr94e.apps.googleusercontent.com">
+</head>
+
+<body>
+    <div class="container">
+        <div class="g-signin2" hidden></div>
+        <!-- <button class="btn btn-danger btn-logout"><a href="#" onclick="signOut();">Sign out</a></button> -->
+        <button class="btn btn-danger btn-logout">Sign out</button>
+        <div class="info"
+            style="margin-bottom: 50px; background-color: rgba(rgb(211, 163, 163), rgb(156, 243, 122), red);">
+            <header>
+                <h3>Account Info</h3>
+            </header>
+            <div class="table-wrapper">
+                <table class="table-users">
+                    <tr>
+                        <th>Full name</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+                <button hidden class="btn btn-add">Add User</button>
+            </div>
+            <!-- Add Modal -->
+            <div class="add-modal modal-wrapper">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Add New User</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" autocomplete="off">
+                            <input type="text" name="fullname" placeholder="Fullname">
+                            <input type="password" name="password" placeholder="Password">
+                            <input type="email" name="email" placeholder="Email">
+                            <button class="btn btn-modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Modal -->
+            <!-- <div class="edit-modal modal-wrapper">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Add Result</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" autocomplete="off">
+                            <input type="text" name="username" placeholder="Username">
+                            <input type="text" name="course" placeholder="Course">
+                            <input type="text" name="mark" placeholder="Mark">
+                            <button class="btn btn-modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Edit info -->
+            <div class="edit-modal modal-wrapper">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Edit Info</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" autocomplete="off">
+                            <input type="text" name="fullname" placeholder="Fullname">
+                            <input type="password" name="password" placeholder="Password">
+                            <input disabled type="text" name="email" placeholder="Email">
+                            <button class="btn btn-modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="result" style="margin-top: 50px;">
+            <header>
+                <h3>Result</h3>
+            </header>
+            <div class="table-wrapper">
+                <table class="table-course">
+                    <tr>
+                        <th>Course</th>
+                        <th>Mark</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
+
+
+            <!-- Edit Modal -->
+            <div class="edit-modal-result modal-wrapper">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Edit Result</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" autocomplete="off">
+                            <input type="text" name="course" placeholder="Course">
+                            <input type="text" name="mark" placeholder="Mark">
+                            <button class="btn btn-modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD_URRYkljwhfUv2UXSpw2dOnAzUr2tLnc",
+            authDomain: "ps14692assignment.firebaseapp.com",
+            databaseURL: "https://ps14692assignment-default-rtdb.firebaseio.com",
+            projectId: "ps14692assignment",
+            storageBucket: "ps14692assignment.appspot.com",
+            messagingSenderId: "38103395762",
+            appId: "1:38103395762:web:70dfac8ea103f84dadc8ab"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <script>
+        // Logout clicked
+        const btnLogout = document.querySelector('.btn-logout');
+
+        btnLogout.addEventListener('click', () => {
+            alert("Bạn đã đăng xuất khỏi tài khoản!!!");
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                localStorage.clear();
+
+                window.location.href = 'login.html';
+            });
+
+        });
+    </script>
+    <script src="./script.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css">
+    <script src="angularJS/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="card">
+            <div class="card-header bg-info text-light  font-weight-bold">
+                <div class="row">
+                    <div class="col-6">
+                        <h3><i class="fas fa-list"></i> DANH SÁCH HÀNG HÓA</h3>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="float-right"><i class="fas fa-address-card"></i> Trần Trung Nghĩa.
+                            <i class="fas fa-phone"></i> 0366888470</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-bordered">
+                    <thead class="text-center bg-danger text-light font-weight-bold">
+                        <tr>
+                            <th ng-click="sortBy('name')">SẢN PHẨM</th>
+                            <th ng-click="sortBy('price')">ĐƠN GIÁ</th>
+                            <th ng-click="sortBy('discount')">GIẢM GIÁ</th>
+                            <th ng-click="sortBy('date')">NGÀY</th>
+                            <th>TIỀN VN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-weight-bold">
+                        <tr ng-repeat="p in lstSanPham | orderBy:sx | limitTo: pageSize:start">
+                            <td scope="row">{{p.name}}</td>
+                            <td class="text-right">{{p.price}}</td>
+                            <td class="text-right">{{p.discount | phantram:2}}</td>
+                            <td class="text-right">{{p.date}}</td>
+                            <td class="text-right">{{ (p.price - p.price*p.discount) * tygia | number : 0 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-center">
+                <button type="button" class="btn btn-primary" ng-click="first();"><i
+                        class="fas fa-hand-point-up"></i></button>
+                <button type="button" class="btn btn-primary" ng-click="prev();"><i
+                        class="fas fa-hand-point-left"></i></button>
+                <button type="button" class="btn btn-primary" ng-click="next();"><i
+                        class="fas fa-hand-point-right"></i></button>
+                <button type="button" class="btn btn-primary" ng-click="last();"><i
+                        class="fas fa-hand-point-down"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+            $scope.lstSanPham = [];
+            // nạp dữ liệu
+            $http.get("Prods.js").then(
+                function (d) {
+                    $scope.lstSanPham = d.data;
+                },
+                function (e) {
+                    alert("Lỗi : " + e.statusText);
+                }
+            );
+            $scope.tygia = 23000;
+            $scope.sx = '-price';
+            
+            $scope.pageSize = 8;
+            $scope.start = 0;
+
+            $scope.first = function(){
+                $scope.start = 0;
+            }
+
+            $scope.last = function(){
+                $scope.start = ((Math.ceil($scope.lstSanPham.length / $scope.pageSize)) - 1) * $scope.pageSize;
+            }
+
+            $scope.sortBy = function (cond) {
+                $scope.sx = cond;
+            }
+
+            $scope.next = function(){
+                if($scope.start < $scope.lstSanPham.length - $scope.pageSize){
+                    $scope.start += $scope.pageSize;
+                }
+            }
+
+            $scope.prev = function(){
+                if($scope.start > 0){
+                    $scope.start -= $scope.pageSize;
+                }
+            }
+
+        });
+        app.filter("phantram", function ($filter) {
+            return function (input, decimals) {
+                return $filter("number")(input * 100, decimals) + '%';
+            }
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

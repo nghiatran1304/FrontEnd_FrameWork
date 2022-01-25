@@ -1,0 +1,56 @@
+<style>
+  body {
+    background-image: url("image/backgroundChiTiet2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .dung {
+    background-color: rgb(113, 245, 163);
+    /* color: aliceblue; */
+    font-weight: bold;
+    color: rgb(219, 77, 105);
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px rgb(50, 11, 68),
+      0 0 42px rgb(118, 10, 168),
+  }
+</style>
+<div class="container">
+  <!-- <h3 hidden>{{sec}}</h3> -->
+  <div class="card">
+    <div class="card-header text-center text-light bg-danger font-weight-bold">
+      <h3>CHI TIẾT KẾT QUẢ</h3>
+    </div>
+    <div class="card-body p-0" style="height: 550px;">
+      <table class="table table-bordered table-hover p-3" style="min-height: 400px;" ng-repeat="ctl in mangInRaCauHoi | limitTo: pageSize:start">
+        <thead>
+          <tr class="text-light bg-info font-weight-bold">
+            <th>{{ctl.Text}}</th>
+          </tr>
+        </thead>
+        <tbody style="background-color: aliceblue;">
+          <tr ng-repeat="pa in ctl.Answers">
+            <!-- <td ng-repeat="ans in mangInRaCauTraLoi">  ng-class="{ 'dung' : pa.Id == ans , 'sai' : pa.Id != ans  }" -->
+            <td ng-class="{ 'dung' : pa.Id == ctl.AnswerId , 'sai' : pa.Id != ctl.AnswerId  }">
+              {{pa.Text}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="font-weight-bold" ng-repeat="dungDungChon in lstKetQuaChon | limitTo: pageSize:start">
+        <h4>
+          Bạn chọn : <strong>{{dungDungChon}} </strong>
+        </h4>
+     </div>
+    </div>
+    <div class="card-footer text-light font-weight-bold">
+      <div class="text-center mt-3 mb-3">
+        <button class="btn btn-success mr-5" id="button2" ng-click="prev();"> <<<< </button>
+        <button class="btn btn-success" id="button2" ng-click="next();"> >>>> </button>
+      </div>
+    </div>
+  </div>
+</div>

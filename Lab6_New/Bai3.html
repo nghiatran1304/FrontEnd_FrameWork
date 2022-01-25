@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css">
+    <script src="angularJS/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container p-0">
+        <div class="card mt-5 p-0">
+            <div class="card-header bg-info text-light row">
+                <div class="col-6">
+                    <h3><i class="fas fa-list-ul"></i> BÁN HÀNG GIẢI KHÁT</h3>
+                </div>
+                <div class="col-6">
+                    <h3 class="float-right">{{homnay}}</3>
+                </div>
+            </div>
+            <div class="card-body p-0 row">
+                <form class=" col">
+                    <table class="table table-bordered">
+                        <thead class="text-center bg-warning text-light">
+                            <tr>
+                                <th>
+                                    <input type="checkbox"  value='' ng-model='buyAll'  ng-click="checkAll()" />
+                                </th>
+                                <th>Tên hàng</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th>Khuyến mãi</th>
+                                <th>Còn Lại</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center font-weight-bold">
+                            <tr ng-repeat="p in products | orderBy:'-price'" class="text-center"> 
+                                <th>
+                                    <input type="checkbox" ng-model="p.buy" ng-click="checkOne(p);" class="form-check-input">
+                                </th>
+                                <td class="align-middle">{{p.name}}</td>
+                                <td class="text-center align-middle">
+                                    <input type="number" name='quantityInput{{$index}}' ng-model="p.quantity" 
+                                        ng-disabled="!p.buy;" min=1 max=25 class="form-control" required>
+                                 
+                                </td>
+                                <td class="text-center align-middle">{{p.price | number}}</td>
+                                <td class="text-center align-middle">{{p.total = p.quantity * p.price | number}}</td>
+                                <td class="text-center align-middle">{{p.promotion = getPromotion(p.quantity)}}</td>
+                                <td class="text-center align-middle">{{p.total - p.promotion | number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="card-footer">
+                <h3 class="float-right font-weight-bold text-danger">TỔNG TIỀN : {{getTotal() | number}}</h3>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+            var d = new Date();
+            var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+            d.getHours() + ":" + d.getMinutes();
+            $scope.homnay = datestring;
+
+            $scope.products = [];
+            $http.get("js/sanpham.js").then(
+                function (r) { $scope.products = r.data; },
+                function (d) { alert('Lỗi : ' + d.statusText);
+                }
+            );
+            $scope.getTotal = function () {
+                var total = 0;
+                for (var i = 0; i < $scope.products.length; i++) {
+                    if ($scope.products[i].buy) {
+                        total += $scope.products[i].total - $scope.products[i].promotion;
+                    }
+                }
+                return total;
+            }
+
+            $scope.checkAll = function () {
+                for (var i = 0; i < $scope.products.length; i++) {
+                    $scope.products[i].buy = !$scope.buyAll;
+                }
+
+                if ($scope.buyAll) {
+                    for (var i = 0; i < $scope.products.length; i++) {
+                        $scope.products[i].quantity = undefined;
+                    }
+                } 
+                else {
+                    for (var i = 0; i < $scope.products.length; i++) {
+                        $scope.products[i].quantity = 0;
+                    }
+                }
+            }
+
+            $scope.checkOne = function (product) {
+                if (product.buy) {
+                    product.quantity = undefined;
+                } else {
+                    product.quantity = 0;
+                }
+
+                var check = true;
+                for (var i = 0; i < $scope.products.length; i++) {
+                    if ($scope.products[i].buy) {
+                        check = false;
+                        break;
+                    }
+                }
+                if (!check) {
+                    $scope.buyAll = false;
+                }
+            }
+
+            $scope.getPromotion = function (quantity) {
+                if (quantity >= 15) return 100000;
+                else if (quantity >= 10) return 60000;
+                else if (quantity >= 5) return 20000;
+                else return 0;
+            }
+        });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
